@@ -1,0 +1,147 @@
+<div class="sidebar" data-color="red">
+
+    <div class="sidebar-menu">
+
+        <div class="side-user">
+            <div class="side-img" style="background-image: url(assets/img/mike.jpg)"></div>
+            <div class="user">
+                <small>mike sierrre</small>
+                <p>software developper</p>
+            </div>
+        </div>
+
+        <ul>
+            <li class="nav-item">
+                <a id="menu_btn" class="nav-link btn" mat-button routerLink="home" routerLinkActive="active">
+                    <span class="icon_menu"><img height="30px" class="rounded-circle" src="../../assets/icones/home.png"></span>
+                    <span class="nom_menu">Home</span>
+                </a>
+            </li>
+            <!-- <div class="dropdown-divider"></div> -->
+
+            <li class="nav-item">
+
+
+                <a id="menu_btn" class="nav-link btn" mat-button routerLink="article" routerLinkActive="active">
+                    <span class="icon_menu"><img height="30px" class="rounded-circle" src="../../assets/icones/article.png"></span>
+                    <span class="nom_menu">Article</span>
+                </a>
+            </li>
+            <!-- <div class="dropdown-divider"></div> -->
+
+            <li class="nav-item">
+                <a id="menu_btn" class="nav-link btn" mat-button routerLink="magazine" routerLinkActive="active">
+                    <span class="icon_menu"><img height="30px" class="rounded-circle" src="../../assets/icones/magazine.png"></span>
+                    <span class="nom_menu">Magazine</span>
+                </a>
+                <!-- <a href="">
+                    <span></span>
+                    <span>Magazine</span>
+                </a> -->
+            </li>
+            <!-- <div class="dropdown-divider"></div> -->
+
+            <li class="nav-item">
+                <!-- <a href="">
+                    <span></span>
+                    <span>Publicité</span>
+                </a> -->
+
+                <a id="menu_btn" class="nav-link btn" mat-button routerLink="publicite" routerLinkActive="active">
+                    <span class="icon_menu"><img height="30px" class="rounded-circle" src="../../assets/icones/publicite.jpg"></span>
+                    <span class="nom_menu">Publicité</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <!-- <a href="">
+                    <span class="ti ti-user"></span>
+                    <span>Mon Compte</span>
+                </a> -->
+
+                <a id="menu_btn" class="nav-link btn" mat-button routerLink="moncompte" routerLinkActive="active">
+                    <span class="icon_menu"><img height="30px" class="rounded-circle" src="../../assets/icones/compte.png"></span>
+                    <span class="nom_menu">Mon Compte</span>
+                </a>
+            </li>
+            <!-- <div class="dropdown-divider"></div> -->
+
+            <li class="nav-item">
+                <!-- <a href="">
+                    <span class="ti ti-settings"></span>
+                    <span>Gestions Des Admins</span>
+                </a> -->
+
+                <a id="menu_btn" class="nav-link btn" mat-button routerLink="gestion_lecteur" routerLinkActive="active">
+                    <span class="icon_menu"><img height="30px" class="rounded-circle" src="../../assets/icones/lecteur.png"></span>
+                    <span class="nom_menu">Gestion des Lecteurs</span>
+                </a>
+
+            </li>
+
+            <li class="nav-item">
+                <!-- <a href="">
+                    <span class="ti ti-settings"></span>
+                    <span>Gestions Des Admins</span>
+                </a> -->
+
+                <a id="menu_btn" class="nav-link btn" mat-button routerLink="gestion_admins" routerLinkActive="active">
+                    <span class="icon_menu"><img height="30px" class="rounded-circle" src="../../assets/icones/admin.jpg"></span>
+                    <span class="nom_menu">Gestion des Admins</span>
+                </a>
+
+            </li>
+
+
+        </ul>
+    </div>
+</div>
+<div class="main-panel">
+    <div class="header">
+        <!-- <div class="fixed-top"> -->
+        <button (click)='check()' style="color: orange;" mat-icon-button class="menu-toogle">
+                <mat-icon >menu</mat-icon>
+            </button>
+        <div class="search">
+            <mat-icon>search</mat-icon>
+            <input type="search" placeholder="Rechercher ici">
+            <!-- <form class="d-flex header_search search">
+                    <input type="search" class="form-control me-2" placeholder="Rechercher ici" aria-label="recherche">
+                    <button class="btn btn-outline-success" type="submit">Recherche</button>
+                </form> -->
+        </div>
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <!-- <span><img src="assets/icones/jstm_court.png"  height="35px"/></span> -->
+                <p class="jstm_admin_txt">JSTM Administration</p>
+            </h3>
+            <!-- <span class="ti ti-menu-alt"></span> -->
+        </div>
+        <div>
+            <button mat-icon-button class="icon">
+                    <mat-icon>person</mat-icon>
+                    
+                </button>
+            <!-- <button mat-icon-button class="menu-toogle">
+                    <mat-icon></mat-icon>
+                </button> -->
+            <button mat-icon-button class="icon">
+                    <mat-icon>sms</mat-icon>
+                </button>
+        </div>
+
+    </div>
+    <router-outlet class="main"></router-outlet>
+</div>
+
+
+
+<!-- <div class="wrapper">
+        <div class="sidebar" data-color="red">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="main-panel">
+            <app-navbar class="header"></app-navbar>
+            <router-outlet class="main"></router-outlet>
+        </div>
+    </div> -->

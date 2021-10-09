@@ -1,0 +1,67 @@
+<ngx-spinner></ngx-spinner>
+<div class="body">
+
+    <section class="Form formulaire container ">
+            <div class="row no-gutters">
+                <div class="col-lg-5 img_log">
+                    <img src="assets/img/login-tof.png" alt="JSTM" height="500px" >
+                </div>
+                <div class="col-lg-7 px-5 pt-5">
+                    <h1>Connecter vous à votre compte</h1>
+                    <form (ngSubmit)="onSubmit(login)" #login="ngForm">
+                        <div class="form-row">
+                            <mat-form-field class="my-3 col-lg-7">
+                                <mat-label>Quel est votre adresse mail ?</mat-label>
+                                <input matInput type="text" name="email" placeholder="jstm_adresse@jstm.com" class="form-control" ngModel required >
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="form-row">
+
+                            <mat-form-field class="my-3 col-lg-7">
+                                <mat-label>Entrez votre mots de passe</mat-label>
+                                <input matInput name="password" type="password" placeholder="********" class="form-control" ngModel required >
+                            </mat-form-field>
+                            
+                        </div>
+                        
+                        <div class="form-row" *ngIf="invalid==true">
+                            <div class="col-lg-7">
+                                <label  type="text"  class="mt-1 mb-3 alert alert-danger" >Email ou mots de passe incorect</label>
+                            </div>
+                        </div>
+                        <div class="form-row" *ngIf="Eror_server==true">
+                            <div class="col-lg-7">
+                                <label  type="text"  class="mt-1 mb-3 alert alert-danger" >Erreur liée au server! Veuillez réessayez!</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-lg-7">
+                                <button type="submit"  class="btn1 mt-3 mb-3" [disabled]="login.invalid">Login</button>
+                            </div>
+                        </div>
+    
+                        <a class="mbrs-icon" (click)="openRecuperationDialog()">
+                            <div class="btn_proposition" >
+                                <span class="mbrs-icon-label">Mots de passe oublié ?</span>
+                            </div>
+                        </a>
+    
+                        <p (click)="openCreationCompteDialog()">Vous n'avez pas de compte ?
+                            <a class="mbrs-icon">
+                                <div class="btn_proposition" >
+                                    <span class="mbrs-icon-label">Créer en ici !</span>
+                                </div>
+                            </a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+    </section>
+</div>
+
+
+
+
+

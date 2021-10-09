@@ -1,0 +1,18 @@
+<div>
+    <div class="div_entete" (click)="open_mycompte()"  routerLink="mon_compte">
+        <img id="user_img" class="rounded-circle" src="assets/img/mike.jpg" style="margin: auto;height: 50px;width: 50px;" >
+        <!--  [src]="user_service.utilisateur.imgPath" 
+            {% comment %} [innerHTML]="blog.excerpt.rendered" {% endcomment %}
+        mon_compte-->
+        <label id="user_name"> Ballo Ibrahima</label>
+    </div>
+    
+    <div class="dropdown-divider"></div>
+    <div>
+        <button id="bouton_moncompte" class="btn btn-outline-success" (click)="open_mycompte()" style="margin:auto; width:100%;margin-bottom:5px">Mon Compte</button>        
+    </div>
+    <div>
+        <button id="bouton_deconnecter" class="btn btn-dark"   (click)="deconnect()"  style="margin:auto; width:100%;" >Me Deconnecter</button>
+    </div>
+
+</div>

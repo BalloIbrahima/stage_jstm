@@ -1,0 +1,50 @@
+.entete {
+    height: 100px;
+    width: 100%
+}
+
+.form-inline {
+    margin-left: 5%;
+    margin-right: 7%;
+}
+
+.search {
+    margin-top: -5%;
+    display: flex;
+    width: 90%;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border: none;
+    align-items: center;
+    background-color: white;
+    padding: 2px;
+}
+
+.search img {
+    font-size: 1.3rem;
+    color: #fff;
+    padding-left: 1rem;
+}
+
+.search input {
+    flex: 1;
+    height: 42px;
+    width: auto;
+    border: none;
+    border-width: 0;
+    background: transparent;
+    padding: 1rem;
+    color: rgb(210, 105, 30);
+    margin-right: 0 !important;
+}
+
+.search input:focus {
+    outline: none;
+}
+
+.search button {
+    border-top-right-radius: 30px;
+    align-items: flex-end;
+    margin-right: 1px;
+    margin-left: auto;
+}

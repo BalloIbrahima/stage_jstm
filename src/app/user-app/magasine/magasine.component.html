@@ -1,0 +1,49 @@
+<ngx-spinner></ngx-spinner>
+<div class="card-columns" style="margin-top: 10px;margin-bottom: 10px;">
+    <button *ngFor="let magazine of magazines" type="button" class="btn btn-link" data-toggle="modal" data-target="#staticBackdrop1" (click)="onGetPdf(magazine.fichier)">
+        <article class="card">
+            <img [src] ="magazine.image" class="card-img-top" alt="img">
+        </article>
+    </button> 
+</div>
+
+<!-- <pdf-viewer [src]="fichier" [show-all] = "false"  style="display: block; height: 80vh;"></pdf-viewer> -->
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"  >
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">MAGAZINE : {{currentMag[0].nom | uppercase}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onGetPdf(null)" >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" style="margin-left: 15px;" (click)="onDownloadPdfFile(currentMag[0].fichier,currentMag[0].nom)">TELECHARGER</button>
+            </div>
+            <div class="modal-body" >
+                
+                <!-- <div class="embed-responsive embed-responsive-21by9">
+                    <pdf-viewer class="embed-responsive-item" [src]="fichier" [show-all] = "false"  style="display: block;"></pdf-viewer>
+                </div> -->
+                <!-- <div class="embed-responsive embed-responsive-21by9">
+                    <ngx-extended-pdf-viewer class="embed-responsive-item" [src] = "pdfFile" (pdfLoaded) = "onAfterLoadCompleted($event)"  [zoom]="'auto'" pageViewMode="single" 
+                        [showToolbar] = "true" [showHandToolButton] = "false" [textLayer]="true" [showSecondaryToolbarButton]="false" [showSelectButton] = "false"
+                        [showBookmarkButton]  = "false" [showDownloadButton]  = "true" [showFindButton]  = "false" [showOpenFileButton]  = "false"
+                        [showPresentationModeButton]  = "false" [showPrintButton]  = "false" [page]="page" [showZoomButtons]  = "false"
+                        [showRotateButton]  = "false" [showPagingButtons]  = "false"
+                    ></ngx-extended-pdf-viewer>
+                </div> -->
+                <ngx-extended-pdf-viewer [src] = "pdfFile" (pdfLoaded) = "onAfterLoadCompleted($event)" height="64vh" [zoom]="'auto'" pageViewMode="single" 
+                  [showToolbar] = "true" [showHandToolButton] = "false" [textLayer]="true" [showSecondaryToolbarButton]="false"
+                  [showBookmarkButton]  = "false" [showDownloadButton]  = "false" [showFindButton]  = "true" [showOpenFileButton]  = "false"
+                  [showPresentationModeButton]  = "false" [showPrintButton]  = "false" [(page)]="page" [showZoomButtons]  = "true"
+                  [showRotateButton]  = "true" [showPagingButtons]  = "false"
+                ></ngx-extended-pdf-viewer>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" (click)="prevPage()" [disabled] = "page === 1">Prev</button>
+                <span>{{page}} / {{allpage}}</span>
+                <button type="button" class="btn btn-primary btn-sm" (click)="nextPage()" [disabled] = "page === allpage || allpage === 0">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

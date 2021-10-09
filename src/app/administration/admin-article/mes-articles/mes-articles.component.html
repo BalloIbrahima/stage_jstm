@@ -1,0 +1,153 @@
+<main>
+    <div class="cards ">
+        <div class="card article tabcontent card-img ">
+            <div class="card-icon ">
+                <span>
+                    <h2>2200</h2>
+                </span>
+            </div>
+            <div class="card-info">
+                <small>Articles par Moi</small>
+            </div>
+        </div>
+
+        <div class="card magazine tabcontent card-img ">
+            <div class="card-icon">
+                <span>
+                    <h2>1300</h2>
+                </span>
+            </div>
+            <div class="card-info">
+                <small>Magasines par Moi</small>
+            </div>
+        </div>
+
+        <div class="card commentaire tabcontent card-img ">
+            <div class="text-capitalize card-icon">
+                <span>
+                <h2>120</h2>
+            </span>
+
+            </div>
+            <div class="card-info" routerLink="../../home/commentaires">
+                <small>Commentaires sur mes publications</small>
+            </div>
+        </div>
+
+        <div class="card nouvel_article" routerLink="../formulaire_article">
+            <div class="card-body  txt_part">
+                <h3><label class="rubrique">Publié un nouvel article</label></h3>
+                <!-- <h5 class="card-title"><label class="titre_publication">Nouvel article</label></h5> -->
+                <!-- <p class="card-text">Veuillez cliquer ici pour la création d'article</p> -->
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- <div  style="padding-top: 10px; padding-bottom: 10px;">
+        
+        <h2 style="color: #fff; font-family: Verdana, Geneva, Tahoma, sans-serif; margin-left: 10px; margin-booton:auto ">
+            Mes articles
+        </h2>
+
+        
+
+
+            <div class="card-columns">
+                <div *ngFor = "let article of articles ; let i=index" >                
+                    <a class="article_acceuil" >
+                        <img src="{{ article.image }}" height="120px" width="auto" style="object-fit: cover;margin-booton:0px; border-radius:4px" class="card-img-top" alt="photo_article">
+                        <div class="card card-body card-body-list txt_part">
+                            <div class="card-body card-info txt_titre ">
+                                <h3 class="rubrique">{{articles[i].rubrique}}</h3>
+                            </div>
+                            <div class="card-info">
+                                <small [innerHTML]="articles[i].titre | slice:0:100"></small>
+                            </div>
+                            <div class="card-footer">
+                                <mat-icon>visibility</mat-icon>>
+                                <mat-icon>visibility</mat-icon>>
+                                <mat-icon>visibility</mat-icon>>
+                            </div>
+                        </div>
+                        
+                    </a>
+                </div>
+            </div>
+        
+            
+          
+
+    </div> -->
+
+    <div class="recent-grid">
+        <div class="projets">
+            <div class="card-header hed">
+                <h2>Mes Articles</h2>
+
+                <button class="btn-outline-danger" routerLink="../../home/nosArticles">Voir tout les articles <span class="las-la-arrow"></span></button>
+            </div>
+            <div class="card-body">
+                <table width="100%">
+                    <thead class="titre_table">
+                        <tr>
+                            <td>Titre</td>
+                            <td>Categorie</td>
+                            <td>Rubrique</td>
+                            <td>Vues</td>
+                            <td>Commentaires</td>
+                            <td>Date publication</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let article of articles ; let i=index">
+                            <td><small [innerHTML]="article.titre | slice:0:50"></small></td>
+                            <td>categorie</td>
+                            <td>{{article.rubrique}}</td>
+                            <td>245</td>
+                            <td>12</td>
+                            <td>{{article.date_publication}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- <p class="card-text"><small class="text-muted">{{ blog.date | date : 'longDate'}}</small></p> -->
+
+<!--{% comment %} 
+<div *ngFor = "let blog of blogData ; let i=index">
+
+        
+          <a class="article_admin card article_acceuil">
+            <article >
+              <!- [ngStyle] = "{width : getId(article.numero_article)}" ->
+              <img src="{{ blog.jetpack_featured_media_url }}" width="30px" class="card-img-top img_article" alt="{{articles[i].titre}}">
+              <div class="card-body txt_part">
+                <h3><label class="rubrique">{{articles[i].rubrique}}</label></h3>
+                <!- <h5 class="card-title"><label class="titre_publication">{{articles[i].titre}}</label></h5> ->
+                <p class="card-text">{{ blog.title.rendered | slice:0:200}}...</p>
+              </div>
+            </article>
+            <div>
+            </div>
+
+            <div class="btn_place">
+                <button class="btn btn-outline-success">
+                    voir l'article
+                </button>
+                <button class="btn btn-primary">
+                    modifier l'article
+                </button>
+                <button class="btn" style="background-color: rgba(255, 0, 0, 0.507); color: #fff;">
+                    suprimer l'article
+                </button>
+                
+            </div>
+          </a>
+        </div> {% endcomment %}-->

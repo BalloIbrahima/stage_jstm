@@ -1,0 +1,38 @@
+<!-- <div class="body">
+    <form class="box" action="localhost:4200/admin" method="POST">
+        <h1>JSTM admin   Login</h1>
+        <input type="text" name="user_name_admin" placeholder="Nom d'Utilisateur">
+        <input type="password" name="password_admin" placeholder="Mots De Passe">
+        <input type="submit"name='bouton_login' value="Login">
+        <small>Tout acces non autorisés est interdit !</small>
+    </form>
+</div> -->
+<body class="body_login">
+    <div class="login_content">
+        <img class="admin_login" src="assets/img/wave_orange.png">
+        <!-- <img class="wave" src="assets/img/wave_loh.png"> -->
+        <div class="container body">
+            <div class="img">
+                <img src="assets/icones/icone.png" class="img-fluid">
+            </div>
+            <div class="login-content">
+                <form>
+                    <img src="assets/img/avatar.svg">
+                    <form class="box" (ngSubmit)="onSubmit(login_admin)" #login_admin="ngForm" >
+                        <h1>JSTM admin   Login</h1>
+                        <input type="text" name="user_name_admin" placeholder="Nom d'Utilisateur" ngModel required>
+                        <input type="password" name="password_admin" placeholder="Mots De Passe" ngModel required>
+                        <input type="submit" name='bouton_login' value="Login" [disabled]="login_admin.invalid">
+                        <label *ngIf="invalid==true" type="text"  class="mt-1 mb-3 alert alert-danger" >Nom d'utilisateur ou mots de passe incorect</label>
+                        <small>Les acces non autorisés sont strictement interdits !</small>
+                    </form>
+                </form>
+            </div>
+        </div>
+    
+    
+    </div>
+    
+</body>
+
+	

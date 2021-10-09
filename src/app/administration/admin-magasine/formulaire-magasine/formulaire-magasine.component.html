@@ -1,0 +1,50 @@
+ <div style="margin-left: 0.5%; margin-right: 0.5%; ">
+    <form (ngSubmit)="creer_magazine(magazine)" method="POST" #magazine="ngForm">
+        <input type="text" name="titre" placeholder="Le titre du magazine ici...*" class="form-control my-2 p-3 text-light" ngModel  required style="height: 50px; width: 100%; background-color: #131D28;">
+        <input type="text" name="prix" placeholder="Le prix du magazine ici..(Laisser vide si le Magazine est gratuit)" class="form-control my-2 p-3 text-light" ngModel style="height: 50px; width: auto%; background-color: #131D28;">
+
+        <div style="display: flex; width: 100%; margin-bottom: 2px;">
+        
+            <div  style="margin-left: 2%;">
+                <label class="my-1 mr-2 nav-link" hreh="#"  >
+                    <span class="text-light" id="selected">Image principal du magazine</span>
+                </label>
+                <input type="file" class="custom-select my-1 mr-sm-2 text-light" style="justify-content: center; align-items: center; background-color: #131D28;" (change)="onSelectFile($event)">
+            </div>
+            <!--affichage de la photo principal -->
+            <div style="margin-left: 2%;">
+                <div class="form-row d-center" *ngIf="msg_vide">
+                    <img   class="my-1 mr-2" src={{img_article}} alt="Image de l'article" ngModel required style="height:90px" >
+                </div>
+                <div *ngIf="!msg_vide" [innerHtml]='msg' class="my-1 mr-sm-2 text-danger" style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
+                    
+            </div>
+
+            <div  style="margin-left: 2%;">
+                <label class="my-1 mr-2 nav-link" hreh="#"  >
+                    <span class="text-light" id="selected">Choisir le magazine</span>
+                </label>
+                <input type="file" class="custom-select my-1 mr-sm-2 text-light" style="justify-content: center; align-items: center; background-color: #131D28;" (change)="onGetPdf($event,file_mag)">
+            </div>
+             <div style="margin-left: 2%;">
+                <div *ngIf="!msg_vide_mag" [innerHtml]='msg_mag' class="my-1 mr-sm-2 text-danger" style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>     
+            </div>
+            <!--(click)="onGetPdf(lastmag.fichier)"-->
+        </div>
+        <div *ngIf="!msg_vide_mag" style="margin-top:10%;margin-bottom:10%;">
+            <p  class="h1 text-light container px-2 pt-5" style="margin:auto; " >Le magazine selectionné s'affichera ici </p>
+        </div>
+        <div *ngIf="msg_vide_mag">
+           <ngx-extended-pdf-viewer ngModel required [src] = "file_mag"  height="64vh" [zoom]="'auto'" pageViewMode="single" ch
+                [showToolbar] = "true" [showHandToolButton] = "false" [textLayer]="true" [showSecondaryToolbarButton]="false"
+                [showBookmarkButton]  = "false" [showDownloadButton]  = "false" [showFindButton]  = "true" [showOpenFileButton]  = "false"
+                [showPresentationModeButton]  = "false" [showPrintButton]  = "false" [(page)]="page" [showZoomButtons]  = "true"
+                [showRotateButton]  = "true"
+            ></ngx-extended-pdf-viewer>
+                
+        </div>
+        <button [disabled]="magazine.invalid" class="btn btn-outline-warning" style="width: auto; right:0px; margin-left: auto; margin-top: 4px; display: flex; margin-bottom:5px"  >Créer le magazine</button>
+   
+    </form>
+</div>   
+    

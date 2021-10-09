@@ -1,0 +1,83 @@
+<main>
+    <div class="cards ">
+
+        <div class="card magazine tabcontent card-img ">
+            <div class="card-icon">
+                <span>
+                    <h2>1300</h2>
+                </span>
+            </div>
+            <div class="card-info">
+                <small>Magasines par Moi</small>
+            </div>
+        </div>
+
+        <div class="card article tabcontent card-img ">
+            <div class="card-icon ">
+                <span>
+                    <h2>2200</h2>
+                </span>
+            </div>
+            <div class="card-info">
+                <small>Articles par Moi</small>
+            </div>
+        </div>
+
+
+
+        <div class="card commentaire tabcontent card-img ">
+            <div class="text-capitalize card-icon">
+                <span>
+                <h2>120</h2>
+            </span>
+
+            </div>
+            <div class="card-info">
+                <small>Commentaires sur mes publications</small>
+            </div>
+        </div>
+
+        <div class="card nouvel_article" routerLink="../formulaire_magazine">
+            <div class="card-body  txt_part">
+                <h3><label class="rubrique">Publié un Magazine</label></h3>
+                <!-- <h5 class="card-title"><label class="titre_publication">Nouvel article</label></h5> -->
+                <!-- <p class="card-text">Veuillez cliquer ici pour la création d'article</p> -->
+            </div>
+        </div>
+
+    </div>
+    <div class="recent-grid">
+        <div class="projets">
+            <div class="card-header hed">
+                <h2>Mes magazines</h2>
+
+                <button class="btn-outline-danger" routerLink="../../home/nosMagasines">Voir tout les magazines <span class="las-la-arrow"></span></button>
+            </div>
+            <div class="card-body">
+                <table width="100%">
+                    <thead class="titre_table">
+                        <tr>
+                            <td>Titre</td>
+                            <td>Vues</td>
+                            <td>Date publication</td>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr *ngFor="let article of articles ; let i=index">
+                            <td><small [innerHTML]="article.titre | slice:0:50"></small></td>
+                            <td>categorie</td>
+                            <td>{{article.rubrique}}</td>
+                            <td>245</td>
+                            <td>12</td>
+                            <td>{{article.date_publication}}</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<!-- <p class="card-text"><small class="text-muted">{{ blog.date | date : 'longDate'}}</small></p> -->

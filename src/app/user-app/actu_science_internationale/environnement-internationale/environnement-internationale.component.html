@@ -1,0 +1,11 @@
+<ngx-spinner></ngx-spinner>
+<div class="card-columns" style="padding-bottom: 10px;">
+    <a class="card text-dark article_acceuil" *ngFor = "let blog of blogData ; let i=index" style="margin-top: 25px;" [routerLink]="['../detail-article',blog.id]">
+      <img src="{{ blog.jetpack_featured_media_url }}" height="200px" class="card-img-top" alt="photo_recent">
+      <div class="card-body">
+        <h5 class="card-title">{{ blog.title.rendered | slice:0:200}}...</h5>
+        <p class="card-text" [innerHTML]="blog.excerpt.rendered"></p>
+        <p class="card-text"><small class="text-muted">{{ blog.date | date : 'longDate'}}</small></p>
+      </div>
+    </a>
+  </div>

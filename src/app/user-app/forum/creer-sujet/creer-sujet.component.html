@@ -1,0 +1,56 @@
+<div>
+    <!-- Entete de la page -->
+    <div class="entete">
+        <div>
+            <h1>Créer un sujet de discussion !!!</h1>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-secondary" routerLink="../acceuil"> Annuler</button>
+    </div>
+    <div class="dropdown-divider"></div>
+
+    <div class="div_commentaire Form">
+        <form (ngSubmit)="creer_sujet(poster_sujet)" method="POST" #poster_sujet="ngForm">
+            <div style="display: flex; width: 85%;">
+                <!-- choix de la rubrique -->
+                <div  style="margin-right: 2%;">
+                    <label class="my-1 mr-2 nav-link"  >
+                        <span id="selected">Rubrique du sujet</span>
+                    </label>
+                    <select class="custom-select my-1 mr-sm-2" id="rubrique">
+                        <option href="#">Agriculture</option> 
+                        <div class="dropdown-divider"></div>
+                        <option  href="#">Sante</option> 
+                        <div class="dropdown-divider"></div>
+                        <option  href="#">Environnement</option> 
+                        <div class="dropdown-divider"></div>
+
+                    </select>
+                </div>
+                <!-- choix du niveau  -->
+
+                <div  style="margin-left: 2%;">
+                    <label class="my-1 mr-2 nav-link" hreh="#"  >
+                        <span id="selected">Categorie du sujet</span>
+                    </label>
+                    <select class="custom-select my-1 mr-sm-2" id="categorie">
+                        <option  href="#">Nationale</option> 
+                        <div class="dropdown-divider"></div>
+                        <option  href="#">Internationale</option> 
+                    </select>
+                </div>
+            </div>
+            <input type="text" name="titre" placeholder="Le titre de votre sujet ici...*" class="form-control my-2 p-3" ngModel  required style="height: 50px; width: 90%;">
+            <textarea type="text" name="message" placeholder="Lancer la discussion avec un premier message...*" class="form-control my-2 p-3" ngModel  required style="height: 120px; width: 70%;"></textarea>
+            <div class="form-row" *ngIf="invalid==true">
+                <div class="col-lg-8">
+                    <label  type="text"  class="mt-1 mb-3 alert alert-danger" [innerHTML]="msg_erreur" ></label>
+                </div>
+            </div>
+             <div style="display: flex; width: 70%;">
+                <input type="submit" value="Créer ce sujet" name="submit_commentaire" class="btn btn-success " [disabled]="poster_sujet.invalid" style="margin-left: auto; justify-content: flex-end; margin-right: 1%;">
+            </div>
+        </form>
+    </div>
+</div>

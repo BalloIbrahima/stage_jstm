@@ -1,0 +1,37 @@
+.card-columns{
+    // @include media-breakpoint-only(xl){
+    //     column-count: 5;
+    // }
+    // @include media-breakpoint-only(lg){
+    //     column-count: 4;
+    // }
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+@media (max-width: 1100px ){
+    
+    .card-columns{
+            // @include media-breakpoint-only(xl){
+            //     column-count: 5;
+            // }
+            // @include media-breakpoint-only(lg){
+            //     column-count: 4;
+            // }
+            column-count: 2;
+        }
+}
+
+@media (max-width: 660px ){
+    
+    // .card-columns{
+    //         // @include media-breakpoint-only(xl){
+    //         //     column-count: 5;
+    //         // }
+    //         // @include media-breakpoint-only(lg){
+    //         //     column-count: 4;
+    //         // }
+    //         column-count: 1;
+    //     }
+}

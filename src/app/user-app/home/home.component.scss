@@ -1,0 +1,168 @@
+.aLaUneDiv {
+    display: inline-block;
+    width: 67%;
+    margin-top: 15px;
+}
+
+.lesPlusLusDiv {
+    background-color: white;
+    display: inline-block;
+    width: 30%;
+    margin-left: 3%;
+    vertical-align: top;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.lesPlusLusDiv:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 17px rgba($color: #000000, $alpha: 0.35);
+}
+
+.tab-content a,
+.tab-content a:visited {
+    text-decoration: none;
+}
+
+.tab-content aside {
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    color: rgba($color: #ffffff, $alpha: 0.5);
+}
+
+.tab-content aside:hover {
+    background-color: rgba($color: #000000, $alpha: 0.35);
+    color: rgba($color: #ffffff, $alpha: 1.0);
+}
+
+.instantInfo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 17px rgba($color: #000000, $alpha: 0.35);
+}
+
+.card-columns a:hover {
+    color: #000000;
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0px 4px 17px rgba($color: #000000, $alpha: 0.35);
+}
+
+.card-columns a:visited {
+    color: #000000;
+    text-decoration: none;
+}
+
+.card-columns a:hover {
+    color: #606060;
+    text-decoration: none;
+}
+
+.card-columns a:visited {
+    color: #606060;
+    text-decoration: none;
+}
+
+//////////////////////////////
+.article_acceuil {
+    border-radius: 10px;
+}
+
+.article_acceuil::placeholder {
+    border-radius: 10px;
+    background-color: #000000;
+    background-image: url("../../../assets/img/art_admin.jpg");
+    background-size: cover;
+}
+
+.img_article {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.txt_part {
+    margin-top: -83px;
+}
+
+.rubrique {
+    top: -30px !important;
+    align-items: center;
+    justify-content: center;
+    margin-left: 60%;
+    border-radius: 2px;
+    padding-left: 2px;
+    padding-right: 1px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: solid;
+    font-size: large;
+}
+
+.titre_publication {
+    background: rgba(25, 65, 7, 0.575);
+    border-radius: 10%;
+    color: white;
+    padding-left: 2px;
+    padding-right: 1px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.partenaire {
+    width: 100%;
+}
+
+//gestion des imgs a afficher lors du load
+.d-block ::placeholder {
+    background-image: url("../../../assets/img/load.GIF");
+    background-size: cover;
+}
+
+.card-img-top ::placeholder {
+    background-image: url("../../../assets/img/load.GIF");
+    background-size: cover;
+}
+
+.card-img ::placeholder {
+    background-image: url("../../../assets/img/load.GIF");
+    background-size: cover;
+}
+
+@media (max-width: 970px) {
+    .aLaUneDiv {
+        display: inline-block;
+        width: 97%;
+        margin-top: 15px;
+    }
+    .lesPlusLusDiv {
+        background-color: white;
+        display: inline-block;
+        width: 97%;
+        margin-left: 0%;
+        vertical-align: top;
+        border: 1px solid white;
+        border-radius: 5px;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .card-columns {
+        // @include media-breakpoint-only(xl){
+        //     column-count: 5;
+        // }
+        // @include media-breakpoint-only(lg){
+        //     column-count: 4;
+        // }
+        column-count: 2;
+    }
+}
+
+@media (max-width: 560px) {
+    .card-columns {
+        // @include media-breakpoint-only(xl){
+        //     column-count: 5;
+        // }
+        // @include media-breakpoint-only(lg){
+        //     column-count: 4;
+        // }
+        column-count: 1;
+    }
+}

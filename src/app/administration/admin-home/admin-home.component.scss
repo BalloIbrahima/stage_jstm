@@ -1,0 +1,68 @@
+main {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+}
+
+.card {
+    color: #fff;
+    background-color: #0B1218;
+    padding: 2rem 1rem;
+    border-radius: 5%;
+}
+
+.card-icon {
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+
+.card-icon span {
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    font-size: 2.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+    font-size: 2rem;
+}
+
+.article {
+    background-image: url(../../../assets/img/art_admin.jpg);
+    background-size: cover;
+}
+
+.commentaire {
+    background-image: url(../../../assets/img/comment_admin.jpg);
+    background-size: cover;
+}
+
+.magazine {
+    background-image: url(../../../assets/img/mag_admin.jpg);
+    background-size: cover;
+}
+
+.card-info {
+    padding: 2%;
+    background-color: rgba($color: #000000, $alpha: 0.35);
+    color: rgba($color: #ffffff, $alpha: 2);
+}
+
+.card-info :hover {
+    background-color: rgba($color: #000000, $alpha: 0.35);
+    color: rgba($color: #ffffff, $alpha: 5);
+}
+
+@media (max-width: 990px) {
+    .cards {
+        display: inline;
+    }
+}

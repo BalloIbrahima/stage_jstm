@@ -1,0 +1,69 @@
+<div class="div_detail">
+    <ngx-spinner></ngx-spinner>
+    <div class="entete">
+        <div class="entete_image">
+            <img [src]="imgSrc" class="img-fluid img_article" alt="Image de l'article" style="width: 95%; inline-item:'center';">
+            <p><small class="text-muted">{{ date | date : 'longDate'}}</small></p>
+            <div class="share_div">
+                <share-buttons [theme]="'circles-dark'"
+                [include]="['facebook','twitter','linkedin','whatsapp','email']"
+                [show]="3"
+                [showText]="true"
+                [tags]="'JSTM Mali'"
+                [title]="titre"
+                [image]="imgSrc"
+                ></share-buttons>
+            </div>
+        </div >    
+        <p class="h1 font-weight-bold text-justify entete_titre" [innerHTML]="titre"></p>
+    </div>
+    <p class="text-justify article_contenu" [innerHTML]="contenu"></p>
+
+    <!-- espace pour poster un commentaire -->
+    <div class="div_commentaire Form">
+        <form (ngSubmit)="posterCommentaire(poste_commentaire)" method="POST" #poste_commentaire="ngForm">
+            <div style="display: flex; width: 85%;" *ngIf="user_service.isAuth==true">
+                <input type="email" name="email" placeholder="monmail@gmail.com" class="form-control col my-2 p-3" ngModel  style="margin-right: 1%; width: 41%;">
+                <input type="text" name="nom_complet" placeholder="Votre nom Complet*" class="form-control col my-2 p-3" ngModel required style="margin-left: 1%; width: 41%;">
+            </div>
+            <div style="display: flex; width: 85%;" *ngIf="user_service.isAuth==false">
+                <label  name="email"  class=" col my-2 p-3" ngModel   style="margin-right: 1%; width: 41%; background:whithe" [innerHTML]="user_service.utilisateur.mail">ibrahimaballo01@gmail.com</label>
+                <label  name="nom_complet"  class=" col my-2 p-3" ngModel style="margin-left: 1%; width: 41%;" [innerHTML]="user_service.utilisateur.nom_complet">Ballo Ibrahima</label>
+            </div>
+            <textarea name="commentaire" placeholder="votre commentaire...*" class="form-control my-2 p-3" ngModel  required style="width: 85%; height: 100px; "></textarea>
+             <div style="width: 85%; display: flex;">
+                <input type="submit" value="Poster mon commentaire" name="submit_commentaire" class="btn1 " [disabled]="poste_commentaire.invalid" style="margin-left: auto; justify-content: flex-end; margin-right: 1%; ">
+            </div>
+        </form>
+
+        <p style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-size:20px">Les commentaires_____________________________</p>
+
+        <div class="les_commentaires" >
+            <div style="box-shadow: 2px 0px 2px rgb(60, 93, 90)">
+                <div style="margin-bottom: 0px;">
+                    <label class="titre_discussion" style="font-size: medium; color: rgb(20, 20, 136); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-bottom: 0px;">Nom de la personne</label>
+                    <label style="right:0px; margin-left: 5%;">il ya 15 minutes</label>
+                </div>
+                <div class="div_message" style="margin-top: 2px; ">
+                    <label class="message" style="font-size: small; font-family: Arial, Helvetica, sans-serif; padding: 2px; margin-left:4%" >baba ballo cest ton commentaire</label>
+                </div>
+            </div>
+            <div class="dropdown-divider" style="color: orangered;"></div>
+
+            <!--a ignore-->
+            <div style="box-shadow: 2px 0px 2px rgb(60, 93, 90)" >
+                <div style="margin-bottom: 0px;">
+                    <label class="titre_discussion" style="font-size: medium; color: rgb(20, 20, 136); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-bottom: 0px;">Nom de la personne</label>
+                    <label style="right:0px; margin-left: 5%;">il ya 45 minutes</label>
+                </div>
+                <div class="div_message" style="margin-top: 2px; ">
+                    <label class="message" style="font-size: small; font-family: Arial, Helvetica, sans-serif; padding: 2px; margin-left:4%" >un autre commentaire de la part de journaliste special</label>
+                </div>
+            </div>
+            <!---->
+        </div>
+        
+    </div>
+</div>
+
+

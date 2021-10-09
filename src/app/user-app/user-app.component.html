@@ -1,0 +1,126 @@
+<div class="all">
+
+    <mat-sidenav-container>
+
+        <!-- <mat-sidenav #sidenav role="navigation">
+            <app-sidenav-list></app-sidenav-list>
+        </mat-sidenav> -->
+
+        <mat-sidenav class="sticky-top" #sidenav role="navigation">
+            <app-sidenav-list class="sticky-top" (sidenavClose)="sidenav.close()"></app-sidenav-list>
+        </mat-sidenav>
+
+
+
+        <mat-sidenav-content>
+
+            <app-navigation-menu class="menu_sans_srcoll" (sideNavToggle)="sidenav.toggle()"></app-navigation-menu>
+
+
+
+            <div class="body">
+                <div>
+
+                    <!-- le bouton qui permet de revenir directement en haut de la page -->
+                    <div class="btn_scroll" id="top" (click)="btn_scroll_click()">
+                        <span class="material-icons">
+                            keyboard_arrow_up
+                        </span>
+                    </div>
+                    <!-- le menu fixe -->
+
+                    <nav class="nav-bar navbar-expand-lg  navbar-light last_header d-none menu_wif_scrool fixed-top ">
+                        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                            <img routerLink="a_propos" height="30px" width="30px" src={{icone_court}}/>
+
+                            <ul class="navbar-nav md-auto">
+                                <li class="nav-item">
+                                    <button id="menu_btn" class="nav-link" mat-button routerLink="home" routerLinkActive="active">Home</button>
+                                </li>
+                                <!-- actu science nationale -->
+                                <li class="nav-item dropdown">
+                                    <button id="menu_btn " class="nav-link dropdown-toggle" routerLinkActive="active" mat-button href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actu Science Nationale
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <button class="dropdown-item" routerLinkk="agriculture_nat">Agriculture</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="sante_nat">Sante</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="environnement_nat">Environnement</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="technologie_nat">Technologie</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="education_nat">Education</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="societe_nat">Societe</button>
+                                    </div>
+                                </li>
+
+                                <!-- Actu-science internationale -->
+                                <li class="nav-item dropdown">
+                                    <button id="menu_btn" class="nav-link dropdown-toggle" routerLinkActive="active" mat-button href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actu Science Internationale
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <button class="dropdown-item" routerLinkk="agriculture_inter">Agriculture</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="innovation_inter">Innovation</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="environnement_inter">Environnement</button>
+
+                                    </div>
+                                </li>
+
+                                <!-- Nos scientifiques -->
+                                <li class="nav-item dropdown">
+                                    <button id="menu_btn" class="nav-link dropdown-toggle" routerLinkActive="active" mat-button href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Nos Scientifiques
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <button class="dropdown-item" routerLinkk="portraits">Portraits</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="opinions">Opinions</button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="dropdown-item" routerLinkk="edito">Edito</button>
+                                    </div>
+                                </li>
+
+
+
+                                <li class="nav-item">
+                                    <button id="menu_btn" class="nav-link" mat-button routerLink="magazine" routerLinkActive="active">Magazines</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button id="menu_btn" class="nav-link" mat-button routerLink="jstm_tv" routerLinkActive="active">JSTM TV</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button id="menu_btn" class="nav-link" mat-button routerLink="forum" routerLinkActive="active">Forum</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button id="menu_btn" mat-button class="nav-link" routerLink="offres" routerLinkActive="active">Les Offres</button>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </nav>
+
+
+                    <div class="mon_app">
+                        <router-outlet></router-outlet>
+                        <!-- <app-home></app-home> -->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <app-footer class="footer"></app-footer>
+
+
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+
+</div>

@@ -1,0 +1,150 @@
+// listes des sujets
+.liste_sujets {
+    display: grid;
+}
+
+.corps_sujet {
+    display: inline-flex;
+    width: 100%;
+    background-image: src("../../../../assets/img/fora.jpg");
+}
+
+.chiffres_sujets {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 2px;
+}
+
+.d-minine {
+    display: none;
+}
+
+// search box 
+.search-box {
+    display: inline-flex;
+    width: 100%;
+}
+
+// .search-box:hover > .search-txt{
+//     background: white;
+// }
+// .search-box:hover > .search-btn{
+//     width: 240px;
+//     padding: 0 6px;
+// }
+// .search-btn{
+//     float: right;
+//     width: 40px;
+//     height: 40px;
+//     border-radius: 50px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+// .search-txt{
+//     border: none;
+//     background: none;
+//     outline: none;
+//     float: left;
+//     padding: 0;
+//     color: white;
+//     font-size: 16px;
+// }
+// icon sujet
+
+/*concernant le bouton de connection */
+
+.btn_authentification_admin {
+    margin: auto;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.our-services {
+    text-align: center;
+    border-radius: 10px;
+    transition: all .4s ease-in-out;
+    box-shadow: 0 0 25px 0 rgba(20, 27, 202, .17)
+}
+
+#admin_connection_icon {
+    height: 50px;
+    width: auto;
+    object-position: initial center;
+}
+
+.compte_sans_img {
+    height: 50px;
+    width: auto;
+    padding: 20%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    color: rgba(69, 4, 143, 0.664);
+}
+
+@media (max-width: 900px) {
+    .d-minine {
+        display: inline;
+    }
+    // concernant la recherche de sujet
+    // .search-box{
+    //     display: inline-flex;
+    //     width: 100%;
+    // }
+    // .search_sujet{
+    //     width: auto;
+    //      right:0px; margin-left: auto; margin-bottom: 2px;
+    // }
+    .text_dis {
+        display: none;
+    }
+    // la fin de la partie recherche
+    h1 {
+        font-size: medium;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin-bottom: 4px;
+        line-height: 100%;
+    }
+    .liste_sujets {
+        margin-right: 3%;
+        margin-left: 3%;
+        padding: 1%;
+        margin-top: 0 !important;
+    }
+    .corps_sujet {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    #connection_icon {
+        margin-right: 1px !important;
+        height: 30px !important;
+        width: 30px !important;
+        left: 1px !important;
+        margin-top: 1px !important;
+    }
+    .details_sujet {
+        margin-top: 3px !important;
+        margin-left: 10px !important;
+    }
+    .titre_sujet {
+        font-size: x-small !important;
+        margin-bottom: 0px !important;
+    }
+    .div_sujet {
+        margin-top: 1px !important;
+    }
+    .text_sujet {
+        font-size: xx-small !important;
+        line-height: 100%;
+    }
+    .date_creation {
+        margin-left: 2px;
+    }
+    .chiffres_sujets {
+        justify-content: center;
+        align-items: center;
+        height: 0;
+        display: none;
+    }
+}

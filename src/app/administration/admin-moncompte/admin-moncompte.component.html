@@ -1,0 +1,115 @@
+<div class="body">
+
+    <section class="Form formulaire container ">
+            <div class="row no-gutters">
+                <div class="col img_log">
+                    <div class="col img_user" type="button">
+                        <div class="form-row">
+                            <h2 class="my-2" style="color: white; margin: auto;">Photo de Profil</h2>
+                        </div>
+                        <div class="form-row d-center">
+                            <img   class=" my-2  border profil_tof" src={{icone_user}} alt="Photo de profil" height="150" width="150px" ngModel required >
+                        </div>
+                        <div [innerHtml]='msg' class="form-row"  *ngIf="msg"  style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
+                        <div class="form-row">
+                            <input class="form-control-file my-2 p-1" type="file" accept="/image\/*/" (change)="onSelectFile($event)"> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col px-2 pt-5">
+                    <h1>Modifier Mon Compte</h1>
+                    <form (ngSubmit)="onSubmit(modifier_compte)" #modifier_compte="ngForm">
+                        <div class="form-row d_tof_mini">
+                            <div class="col-lg-7">
+                                <div  style="margin-left: 2%;">
+                                    <label class="my-1 mr-2 nav-link" hreh="#"  >
+                                        <h2 class="my-2" style="color: dark; margin: auto;">Photo de Profil</h2>
+                                    </label>
+                                    <input class="form-control-file my-2 p-1" type="file" text="Photo de profil" accept="/image\/*/" (change)="onSelectFile($event)"> 
+                                </div>
+                                <!--affichage de la photo principal -->
+                                <div style="margin-left: 2%;">
+                                    <div class="form-row d-center" *ngIf="!msg">
+                                        <img   class=" my-2  border profil_tof" src={{icone_user}} alt="Photo de profil" height="100" width="100px" ngModel required >
+                                    </div>
+                                    <div [innerHtml]='msg' class="form-row"  *ngIf="msg"  style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7 ">
+                                <input  type="text" name="prenom" placeholder="Prenom:Ibrahima" class="form-control my-2 p-3" ngModel >
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7 ">
+                                <input  type="text" name="nom" placeholder="Nom:Ballo" class="form-control my-2 p-3" ngModel>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7 ">
+                                <input  type="email" name="mail" placeholder="Email:mail_adresse@gmail.com*" class="form-control my-2 p-3" ngModel>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7 ">
+                                <input  type="date" name="dateNaissance" class="form-control my-2 p-3" ngModel>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-7  border-2">
+                                <label  class="my-2 p-3" ngModel>Poste:Directeur</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row" *ngIf="acces_server">
+                            <div class="col-lg-7">
+                                <label  type="text"  class="mt-1 mb-3 alert alert-danger" >Problème lié au serveur !</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row" *ngIf="aucune_modif==true">
+                            <div class="col-lg-7">
+                                <label  type="text"  class="mt-1 mb-3 alert alert-danger" >Vos n'avez effectuez aucune modificationl!</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-lg-8">
+                                <button type="submit" class="btn1 mt-3 mb-3" [disabled]="modifier_compte.invalid">Modifier Mes infos</button>
+                            </div>
+                        </div>
+
+                        <div class="form-row" (click)="modifier_password()" >
+                            <div class="col-lg-7">
+                                <button class="mt-2 mb-1 form-control btn-outline-danger" ngModel>Ou Modifier Mon Mots de passe</button>
+                            </div>
+                        </div>
+                        <!--<p (click)="openConnexionDialog()">Vous avez un compte ? 
+                            <a class="mbrs-icon">
+                                <div class="btn_proposition" >
+                                    <span class="mbrs-icon-label">Connecter vous en ici !</span>
+                                </div>
+                            </a>
+                        </p>-->
+                    </form>
+                </div>
+
+               <!-- <div class="col-lg-2  img_user" type="button">
+                    <div class="form-row">
+                        <h2 class="my-2" style="color: white; margin: auto;">Photo de Profil</h2>
+                    </div>
+                    <div class="form-row d-center">
+                        <img   class=" my-2  border profil_tof" src={{icone_user}} alt="Photo de profil" height="150" width="150px" ngModel required >
+                    </div>
+                    <div [innerHtml]='msg' class="form-row"  *ngIf="msg"  style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
+                    <div class="form-row">
+                        <input class="form-control-file my-2 p-1" type="file" accept="/image\/*/" (change)="onSelectFile($event)"> 
+                    </div>
+                                        <img src="assets/img/login-tof.png" alt="JSTM" height="500px" >
+
+                </div>-->
+            </div>
+    </section>
+</div>

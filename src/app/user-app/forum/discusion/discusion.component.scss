@@ -1,0 +1,95 @@
+// listes des sujets
+.liste_discussions {
+    display: grid;
+    grid-template-columns: 60 auto 100;
+}
+
+.corps_discussion {
+    display: inline-flex;
+    width: 100%;
+}
+
+.chiffres_discussions {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 2px;
+}
+
+//icone  de l'utilisateur
+.our-services {
+    text-align: center;
+    border-radius: 10px;
+    transition: all .4s ease-in-out;
+    box-shadow: 0 0 25px 0 rgba(20, 27, 202, .17)
+}
+
+#admin_connection_icon {
+    height: 50px;
+    ;
+    width: auto;
+    object-position: initial center;
+}
+
+.compte_sans_img {
+    height: 50px;
+    width: auto;
+    padding: 20%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    color: rgba(145, 22, 114, 0.664);
+}
+
+.settings:hover {
+    border-radius: 25%;
+    box-shadow: 0 0 25px 0 rgba(20, 27, 201, .05);
+    cursor: pointer;
+    background-image: linear-gradient(-45deg, #ffffff 0%, #16073d 100%);
+}
+
+@media (max-width: 900px) {
+    h1 {
+        font-size: medium;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        margin-bottom: 4px;
+        line-height: 100%;
+    }
+    .btn_retour {
+        font-size: small;
+    }
+    .liste_discu {
+        margin-right: 3%;
+        margin-left: 3%;
+        box-shadow: 0px 0px 1px rgb(53, 53, 36);
+        padding: 1%;
+    }
+    #connection_icon {
+        margin-right: 1px !important;
+        height: 30px !important;
+        width: 30px !important;
+        left: 1px !important;
+        margin-top: 1px !important;
+    }
+    .details_discussion {
+        margin-top: 4px !important;
+        margin-left: 10px !important;
+    }
+    .titre_discussion {
+        font-size: small;
+        color: rgb(52, 52, 59);
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin-bottom: 0px;
+    }
+    .div_msg {
+        margin-top: 1px;
+    }
+    .msg {
+        font-size: x-small;
+        font-family: Arial, Helvetica, sans-serif;
+        box-shadow: 0px 0px 3px rgb(94, 93, 90);
+        padding: 1px
+    }
+    .div_poster_message {
+        margin-left: 15%;
+        margin-right: 3%;
+    }
+}

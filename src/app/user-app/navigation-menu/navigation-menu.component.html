@@ -1,0 +1,222 @@
+<nav class="navbar  titre">
+
+    <div class="first_header">
+
+        <img routerLink="a_propos" class="icone_site" src={{icone}}/>
+
+        <div routerLink="consulter_magazine" class="last_magazine" id="dernier_mag">
+            <div class="event">
+
+                <div class="photo border-secondary">
+                    <article class="card">
+                        <img class="photo_photo card-img-top" alt="photo_recent" height="100px" width="100px" src={{lastmag.image}}/>
+                        <div class="card-body">
+                            <div data-toggle="modal" data-target="#staticBackdrop1" (click)="onGetPdf(lastmag.fichier)">
+                                <h5 class="card-title">
+                                    <div class="lire_le_journal_du">
+                                        <p id="txt_lecture_journal">Lire le journal du</p>
+                                        <p id="date_de_publication">vendredi 27/12/12</p>
+                                    </div>
+                                </h5>
+                                <a class="btn btn_inte btn-dark" style="margin-bottom: 3px;">Consulter</a>
+                            </div>
+                            <a href="#" class="btn btn-outline-success" routerLink="magazine">Voir les autres magazines</a>
+                        </div>
+                    </article>
+                </div>
+
+
+                <div class="btn_plus_text">
+                    <div class="lire_le_journal_du">
+                        <p id="txt_lecture_journal">Lire le journal du</p>
+                        <p id="date_de_publication">vendredi 27/12/12</p>
+                    </div>
+
+                    <a mat-raised-button id="bouton_consulter_le_dernier_journal" class="btn btn-dark" data-toggle="modal" data-target="#staticBackdrop1" (click)="onGetPdf(lastmag.fichier)">Consulter</a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="search_connection">
+            <div class="entete_connection">
+                <div class="btn_pro_new">
+                    <a class="mbrs-icon">
+                        <div class="btn_proposez_article">
+                            <span class="mbrs-icon-label">Proposez une info ici</span>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a class="mbrs-icon ">
+                        <div class="news_letter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" fill="currentColor" class="bi bi-envelope-open-fill text-warning" viewBox="0 0 16 16" style="margin: auto;">
+                                <path d="M8.941.435a2 2 0 0 0-1.882 0l-6 3.2A2 2 0 0 0 0 5.4v.313l6.709 3.933L8 8.928l1.291.717L16 5.715V5.4a2 2 0 0 0-1.059-1.765l-6-3.2zM16 6.873l-5.693 3.337L16 13.372v-6.5zm-.059 7.611L8 10.072.059 14.484A2 2 0 0 0 2 16h12a2 2 0 0 0 1.941-1.516zM0 13.373l5.693-3.163L0 6.873v6.5z"/>
+                            </svg>
+                            <span class="mbrs-icon-label text-dark">NewsLetter</span>
+                        </div>
+                    </a>
+                </div>
+                <!-- gestion du bouton et de la boite de dialogue qui doit s'aaficher  data-toggle="modal" data-target="#boite_de_connection" -->
+
+                <a type="button" (click)="openDialog()" *ngIf="user_service.isAuth==false">
+                    <div class=" btn_authentification_admin">
+                        <div class="box">
+                            <div class="our-services settings">
+                                <div class="icon">
+                                    <img id="admin_connection_icon" src={{icone_user}}>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a type="button" (click)="deconnectDialog(user_service.utilisateur)" *ngIf="user_service.isAuth==true">
+                    <div class=" btn_authentification_admin">
+                        <div class="box">
+                            <div class="our-services settings">
+                                <div class="icon">
+                                    <div class="compte_sans_img rounded-circle" [innerHtml]="compte_sans_img"></div>
+
+                                    <!--
+                                    <div class="compte_sans_img rounded-circle" [innerHtml]="compte_sans_img" ngIf="user_service.utilisateur.imgPath==default_user_img" pour le label ></div>                                    
+                                        <img id="admin_connection_icon" class="rounded-circle" src="assets/img/mike.jpg" style="margin: auto;height: 50px;width: 50px;" *ngIf="user_service.utilisateur.imgPath !=default_user_img" >
+                                         [src]="user_service.utilisateur.imgPath" -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+            <form class="d-flex header_search">
+                <input type="search" class="form-control me-2" placeholder="Rechercher ici" aria-label="recherche">
+                <button class="btn btn-outline-success" type="submit">Recherche</button>
+            </form>
+
+        </div>
+    </div>
+
+    <!---------------------------------------------------------------------------------->
+
+    <nav class="nav-bar navbar-expand-lg  navbar-light last_header  toggle-btn ">
+        <img routerLink="a_propos" height="50px" width="50px" class="d-md-none image_court" src={{icone_court}}/>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav md-auto">
+                <li class="nav-item">
+                    <button id="menu_btn" class="nav-link" mat-button routerLink="home" routerLinkActive="active">
+                        <img src="assets/icones/home1.png" height="25px">
+                    </button>
+                </li>
+
+                <!-- actu science nationale -->
+                <li class="nav-item dropdown">
+                    <button id="menu_btn " class="nav-link dropdown-toggle" [ngClass]="{'active':child1AN.isActive || child2AN.isActive ||child3AN.isActive || child4AN.isActive || child5AN.isActive ||child6AN.isActive}" mat-button href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actu science sationale
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <button class="dropdown-item" routerLink="actu_science_nationale/agriculture" routerLinkActive="active" #child1AN="routerLinkActive">Agriculture</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="actu_science_nationale/sante" routerLinkActive="active" #child2AN="routerLinkActive">Sante</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="actu_science_nationale/environnement" routerLinkActive="active" #child3AN="routerLinkActive">Environnement</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="actu_science_nationale/technologie" routerLinkActive="active" #child4AN="routerLinkActive">Technologie</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="actu_science_nationale/education" routerLinkActive="active" #child5AN="routerLinkActive">Education</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="actu_science_nationale/societe" routerLinkActive="active" #child6AN="routerLinkActive">Societe</button>
+                    </div>
+                </li>
+
+                <!-- Actu-science internationale -->
+                <li class="nav-item dropdown">
+                    <button id="menu_btn" class="nav-link dropdown-toggle" [ngClass]="{'active':child1AI.isActive || child2AI.isActive ||child3AI.isActive}" mat-button id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Actu science internationale
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <button class="dropdown-item" routerLink="actu_science_internationale/agriculture" routerLinkActive="active" #child1AI="routerLinkActive">Agriculture</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="actu_science_internationale/innovation" routerLinkActive="active" #child2AI="routerLinkActive">Innovation</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="actu_science_internationale/environnement" routerLinkActive="active" #child3AI="routerLinkActive">Environnement</button>
+
+                    </div>
+                </li>
+
+                <!-- Nos scientifiques -->
+                <li class="nav-item dropdown">
+                    <button id="menu_btn" class="nav-link dropdown-toggle" [ngClass]="{'active':child1NS.isActive || child2NS.isActive ||child3NS.isActive}" mat-button id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Nos scientifiques
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <button class="dropdown-item" routerLink="nos_scientifiques/portraits" routerLinkActive="active" #child1NS="routerLinkActive">Portraits</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="nos_scientifiques/opinions" routerLinkActive="active" #child2NS="routerLinkActive">Opinions</button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item" routerLink="nos_scientifiques/edito" routerLinkActive="active" #child3NS="routerLinkActive">Edito</button>
+                    </div>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <button id="menu_btn" class="nav-link" mat-button routerLink="magazine" routerLinkActive="active">Magazines</button>
+                </li>
+                <li class="nav-item">
+                    <button id="menu_btn" class="nav-link" mat-button routerLink="jstm_tv" routerLinkActive="active">Jstm tv</button>
+                </li>
+                <li class="nav-item">
+                    <button id="menu_btn" class="nav-link" mat-button routerLink="forum" routerLinkActive="active">Forum</button>
+                </li>
+                <li class="nav-item">
+                    <button id="menu_btn" mat-button class="nav-link" routerLink="les_offres" routerLinkActive="active">Les offres</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="div_nom d-md-none">
+            <p class="nom_etp">JSTM</p>
+            <img height="20" src="/assets/icones/drapeau_float.gif">
+        </div>
+        <div class="d-md-none toogle_ic toggle_app" (click)='onToggleSideNav()'>
+            <button mat-button>
+                <div class="fxHide.gt-xs">
+                    <button mat-icon-button>
+                        <mat-icon>menu</mat-icon>
+                    </button>
+        </div>
+        </button>
+        </div>
+    </nav>
+
+
+</nav>
+
+<!--le lecteur pdf du dernier journal-->
+
+<div class="modal fade" id="staticBackdrop1" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">MAGAZINE : {{lastmag.nom | uppercase}}</h5>
+                <a type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onGetPdf(null)">
+                    <span aria-hidden="true">&times;</span>
+                </a>
+                <button type="button" class="btn btn-outline-secondary btn-sm" style="margin-left: 15px;" (click)="onDownloadPdfFile(lastmag.fichier,lastmag.nom)">TELECHARGER</button>
+            </div>
+            <div class="modal-body">
+
+                <ngx-extended-pdf-viewer [src]="pdfFile" (pdfLoaded)="onAfterLoadCompleted(lastmag)" height="64vh" [zoom]="'auto'" pageViewMode="single" [showToolbar]="true" [showHandToolButton]="false" [textLayer]="true" [showSecondaryToolbarButton]="false" [showBookmarkButton]="false"
+                    [showDownloadButton]="false" [showFindButton]="true" [showOpenFileButton]="false" [showPresentationModeButton]="false" [showPrintButton]="false" [(page)]="page" [showZoomButtons]="true" [showRotateButton]="true" [showPagingButtons]="false"></ngx-extended-pdf-viewer>
+
+            </div>
+
+        </div>
+    </div>
+</div>

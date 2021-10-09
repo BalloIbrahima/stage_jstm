@@ -1,0 +1,221 @@
+<div>
+    <!-- Entete de la page -->
+    <div class="entete">
+        <div>
+            <h1>Bienvenue dans les Fora de discusions du JSTM</h1>
+        </div>
+        <div class="search-box">
+            <label *ngIf="user_service.isAuth==true" style="font-size: small; color: grey; margin-bottom: 0px;"><button class="btn btn-outline-success" [routerLink]="['../creer_un_sujet']">Créer</button><label class="text_dis"> ou discuter autours des sujets passionants.</label></label>
+            <label *ngIf="user_service.isAuth==false" style="font-size: small; color: grey; margin-bottom: 0px;">Discuter autours des sujets passionants.</label>
+            <input class="form-control search_sujet search-box search-txt" placeholder="Search..." type="text" ng-model="searchBox" style="width: auto; right:0px; margin-left: auto; margin-bottom: 2px; border-radius: 10px; padding: 4px;">
+
+            <!-- <div class="search-box" style="width: auto; right:0px; margin-left: auto; margin-bottom: 2px;">
+                <input class="search-txt" placeholder="Search..." type="text" >
+                <a class="search-btn" href="#">
+                    <mat-icon>search</mat-icon>
+                </a>
+
+            </div> -->
+        </div>
+
+    </div>
+
+    <div class="container h1 text-danger pt-5" *ngIf="sujets==null">
+
+        <img src="../../../../assets/img/fora.jpg" width="100%" />
+        <p class="text-center bg-white" style="font-size: large;">Bienvenue dans le fora du JSTM !!Aucun sujet pour le moments!!</p>
+        <p style="font-size: large;">Veuillez vous connectez pour créer et discuter autour du fora!!</p>
+    </div>
+    <!-- Listes des sujets -->
+    <div class="liste_sujets" style="display: inline;" [routerLink]="['../chat',sujet.idSujet]" *ngFor="let sujet of sujets | paginate:{
+        itemsPerPage:pageSize,
+        currentPage:page,
+        totalItems:count
+    }; let i=index">
+
+        <div *ngIf="sujets!=null">
+            <div class="corps_sujet">
+                <div id="connection_icon" class="rounded-circle" style="margin-right:2px ;height: 50px;width: 50px; left: 2px; margin-top: 2px;">
+
+                    <a type="button">
+                        <div class=" btn_authentification_admin">
+                            <div class="box">
+                                <div class="our-services settings">
+                                    <div class="icon">
+                                        <div class="compte_sans_img rounded-circle">{{imageForum(sujet.titre)}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="details_sujet" style="margin-top: 6px; margin-left: 20px;">
+                    <div>
+                        <label class="titre_sujet" style="font-size: medium; color: rgb(13, 13, 94); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-bottom: 0px;">
+                            {{ sujet.titre}}
+                        </label>
+                        <label *ngIf="nbr_table" class="d-minine btn-info " style="font-size: xx-small;margin-left: 10%; padding: 1px; background-color: rgb(65, 65, 160);">{{nbr_table[i]}} <mat-icon>chat</mat-icon></label>
+                        <label class="d-minine btn-success" style="font-size: xx-small; margin-left: 2px; right: 2px; padding: 2px; background-color: rgb(255, 255, 255); color: black;">13 <mat-icon>visibility</mat-icon></label>
+
+
+                    </div>
+                    <div class="div_sujet" style="margin-top: 2px; ">
+                        <label class="text_sujet" style="font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(172, 133, 8); padding: 2px;" [innerHTML]="sujet.rubrique">                            
+                        </label>
+                        <label class="text_sujet" style="margin-left: 15px; font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(9, 156, 41); padding: 2px;" [innerHTML]="sujet.categorie">
+                        </label>
+                        <label class="text_sujet" style="margin-left: 15px; font-size: small; font-family: Arial, Helvetica, sans-serif;">
+                            {{ sujet.dateCreation | date : 'longDate'}}
+                            <!--  || date_creation : 'longDate' -->
+                        </label>
+                        <label class="text_sujet" style="margin-left: 2px; font-size: small; font-family: Arial, Helvetica, sans-serif;">par</label>
+                        <label class="text_sujet" style="margin-left: 2px; font-size: small; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: rgb(5, 59, 5);" innerHTML={{sujet.user.nomComplet}}>
+                        <!-- (nom_createur({{sujet.id_createur}})) -->
+                        </label>
+                    </div>
+                </div>
+
+                <div class="chiffres_sujets" style="right:0px; margin-left: auto; ">
+                    <div class="card card1" style="align-items: center; justify-content: center; width: auto; background-color: rgb(65, 65, 160);">
+                        <label style="color: rgb(255, 255, 255);">{{nbr_table[i]}}</label>
+                        <label style="font-size: x-small; color: rgb(255, 255, 255); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><mat-icon>chat</mat-icon></label>
+                    </div>
+                    <div class="card card2" style="align-items: center; justify-content: center;">
+                        <label>13</label>
+                        <label style="font-size: x-small; color: rgb(0, 0, 0); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><mat-icon>visibility</mat-icon></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
+
+        <!-- 2 a ne pas concerve -->
+        <!--  -->
+
+    </div>
+
+    <div *ngIf="maxS" class="col-md-12">
+        <pagination-controls previousLabel="Prev" nextLabel="Suiv" [responsive]=true (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
+
+
+
+
+</div>
+
+
+
+<!-- en cas de non possible de retour  -->
+<!-- Listes des sujets -->
+<!-- <div class="liste_sujets" *ngFor = "let sujet of sujets ; let i=index" style="display: inline;">
+
+    <div>
+        <div class="corps_sujet">
+            <img id="connection_icon" class="rounded-circle" src="assets/img/mike.jpg" style="margin-right:2px ;height: 50px;width: 50px; left: 2px; margin-top: 2px;"  >
+            <div class="details_sujet" style="margin-top: 8px; margin-left: 20px;">
+                <div>
+                    <label class="titre_sujet" style="font-size: medium; color: rgb(13, 13, 94); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-bottom: 0px;">L'agriculture Malienne et le desertification</label>
+                    <label class="d-minine btn-info " style="font-size: xx-small;margin-left: 10%; padding: 1px; background-color: rgb(65, 65, 160);">3 <mat-icon>chat</mat-icon></label>
+                    <label class="d-minine btn-success" style="font-size: xx-small; margin-left: 2px; right: 2px; padding: 2px; background-color: rgb(255, 255, 255); color: black;" >13 <mat-icon>visibility</mat-icon></label>
+                    
+
+                </div>
+                <div class="div_sujet" style="margin-top: 2px; ">
+                    <label class="text_sujet" style="font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(172, 133, 8); padding: 2px;">Rubrique</label>
+                    <label class="text_sujet" style="margin-left: 15px; font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(9, 156, 41); padding: 2px;">Niveau</label>
+                    <label class="text_sujet" style="margin-left: 15px; font-size: small; font-family: Arial, Helvetica, sans-serif;">Date de creation du sujets</label>
+                    <label class="text_sujet" style="margin-left: 2px; font-size: small; font-family: Arial, Helvetica, sans-serif;" >par</label>
+                    <label class="text_sujet" style="margin-left: 2px; font-size: small; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: rgb(5, 59, 5);">Ballo Ibrahima</label>
+                </div>
+            </div>
+
+            <div class="chiffres_sujets" style="right:0px; margin-left: auto; ">
+                <div class="card card1" style="align-items: center; justify-content: center; width: auto; background-color: rgb(65, 65, 160);" >
+                    <label style="color: rgb(255, 255, 255);">3</label>
+                    <label style="font-size: x-small; color: rgb(255, 255, 255); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><mat-icon>chat</mat-icon></label>
+                </div>
+                <div class="card card2" style="align-items: center; justify-content: center;">
+                    <label>13</label>
+                    <label style="font-size: x-small; color: rgb(0, 0, 0); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><mat-icon>visibility</mat-icon></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div> -->
+
+<!-- 2 a ne pas concerve -->
+<!-- <div>
+        <div class="corps_sujet">
+            <img id="connection_icon" class="rounded-circle" src="assets/img/mike.jpg" style="margin-right:2px ;height: 50px;width: 50px; left: 2px; margin-top: 2px;"  >
+            <div class="details_sujet" style="margin-top: 8px; margin-left: 20px;">
+                <div>
+                    <label class="titre_sujet" style="font-size: medium; color: rgb(13, 13, 94); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-bottom: 0px;">L'agriculture Malienne et le desertification</label>
+                    <label class="d-minine btn-info " style="font-size: xx-small;margin-left: 10%; padding: 1px; background-color: rgb(65, 65, 160);">3 <mat-icon>chat</mat-icon></label>
+                    <label class="d-minine btn-success" style="font-size: xx-small; margin-left: 2px; right: 2px; padding: 2px; background-color: rgb(255, 255, 255); color: black;" >13 <mat-icon>visibility</mat-icon></label>
+                    
+
+                </div>
+                <div class="div_sujet" style="margin-top: 2px; ">
+                    <label class="text_sujet" style="font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(172, 133, 8); padding: 2px;">Rubrique</label>
+                    <label class="text_sujet" style="margin-left: 15px; font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(9, 156, 41); padding: 2px;">Niveau</label>
+                    <label class="text_sujet" style="margin-left: 15px; font-size: small; font-family: Arial, Helvetica, sans-serif;">Date de creation du sujets</label>
+                    <label class="text_sujet" style="margin-left: 2px; font-size: small; font-family: Arial, Helvetica, sans-serif;" >par</label>
+                    <label class="text_sujet" style="margin-left: 2px; font-size: small; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: rgb(5, 59, 5);">Ballo Ibrahima</label>
+                </div>
+            </div>
+
+            <div class="chiffres_sujets" style="right:0px; margin-left: auto; ">
+                <div class="card card1" style="align-items: center; justify-content: center; width: auto; background-color: rgb(65, 65, 160);" >
+                    <label style="color: rgb(255, 255, 255);">3</label>
+                    <label style="font-size: x-small; color: rgb(255, 255, 255); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><mat-icon>chat</mat-icon></label>
+                </div>
+                <div class="card card2" style="align-items: center; justify-content: center;">
+                    <label>13</label>
+                    <label style="font-size: x-small; color: rgb(0, 0, 0); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><mat-icon>visibility</mat-icon></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-divider"></div> -->
+<!--  -->
+
+<!-- </div> -->
+
+<!--a conserver d'abord pour le test de recherche  -->
+<!-- 
+    <li ng-repeat="let sujet in sujets | filter:searchBox" class="liste_sujets" style="display: inline;">
+
+        <div>
+            <div class="corps_sujet">
+                <img id="connection_icon" class="rounded-circle" src="assets/img/mike.jpg" style="margin-right:2px ;height: 50px;width: 50px; left: 2px; margin-top: 2px;"  >
+                <div class="details_sujet" style="margin-top: 8px; margin-left: 20px;">
+                    <div>
+                        <label class="titre_sujet" style="font-size: medium; color: rgb(13, 13, 94); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-bottom: 0px;">{{sujet.tire_sujet}}</label>
+                        <label class="d-minine btn-info " style="font-size: xx-small;margin-left: 10%; padding: 1px;">3</label>
+                        <label class="d-minine btn-success" style="font-size: xx-small; margin-left: 2px; right: 2px; padding: 2px;" >3</label>
+                        
+    
+                    </div>
+                    <div class="div_sujet" style="margin-top: 2px; ">
+                        <label class="text_sujet" style="font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(172, 133, 8); padding: 2px;">{{sujet.rubrique}}</label>
+                        <label class="text_sujet" style="margin-left: 15px; font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(9, 156, 41); padding: 2px;">{{sujet.niveau}}</label>
+                        <label class="text_sujet" style="margin-left: 15px; font-size: small; font-family: Arial, Helvetica, sans-serif;">{{sujet.date_creation}}</label>
+                        <label class="text_sujet" style="margin-left: 2px; font-size: small; font-family: Arial, Helvetica, sans-serif;" >par</label>
+                        <label class="text_sujet" style="margin-left: 2px; font-size: small; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; color: rgb(5, 59, 5);">Ballo Ibrahima</label>
+                    </div>
+                </div>
+    
+                <div class="chiffres_sujets" style="right:0px; margin-left: auto; ">
+                    <div class="card card1" style="align-items: center; justify-content: center; width: 70px; background-color: rgb(65, 65, 160);" >
+                        <label style="color: rgb(255, 255, 255);">3</label>
+                        <label style="font-size: x-small; color: rgb(255, 255, 255); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Nouveau(x)</label>
+                    </div>
+                    <div class="card card2" style="align-items: center; justify-content: center;">
+                        <label>3</label>
+                        <label style="font-size: x-small; color: rgb(0, 0, 0); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Message(s)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-divider"></div>
+ -->

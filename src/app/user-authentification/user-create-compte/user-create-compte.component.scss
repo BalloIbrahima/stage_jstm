@@ -1,0 +1,92 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.profil_tof{
+    margin: auto;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5;
+    border-color: white;
+    border-width: 3px;
+    
+}
+
+.body{
+    height: 100%;
+    padding: auto;
+    scroll-behavior: auto;
+    // background-image: "assets/img/CACAO&.png";
+}
+
+
+.formulaire{
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    
+}
+.row{ 
+    background: white;
+    border-radius: 30px;
+
+}
+
+img{
+    
+}
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.btn_proposition{
+    display: inline-flex;
+
+}
+
+.btn_proposition:hover{
+    cursor: pointer;
+
+}
+
+.btn1:hover , .btn1:focus{
+    background: white;
+    border: 1px solid;
+    color: black;
+}
+
+.img_user{
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    border-width: 3px;
+    // background-image: url("bg.svg");
+    background-color: rgba(16, 32, 17, 0.815);
+    border-radius: 5px;
+}
+
+.d_tof_mini{
+    display: none;
+}
+
+
+@media screen and (max-width: 990px){
+    .img_log{
+        display: none;
+    }
+
+    .d_tof_mini{
+        display: contents;
+    }
+
+    .img_user{
+        display: none;
+    }
+}

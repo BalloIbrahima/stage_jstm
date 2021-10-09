@@ -1,0 +1,27 @@
+main {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+
+//table
+table {
+    border-collapse: collapse;
+}
+
+td {
+    color: #fff;
+}
+
+.recent-grid {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: 100%;
+}
+
+.hed {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}

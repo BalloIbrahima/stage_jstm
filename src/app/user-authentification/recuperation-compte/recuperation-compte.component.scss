@@ -1,0 +1,51 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.body{
+    background: rgb(218, 134, 9);
+    height: 100%;
+    padding: auto;
+    // background-image: "assets/img/CACAO&.png";
+}
+
+
+.formulaire{
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    
+}
+.row{ 
+    background: white;
+    border-radius: 30px;
+
+}
+
+
+
+.btn1{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+
+
+.btn1:hover , .btn1:focus{
+    background: white;
+    border: 1px solid;
+    color: black;
+}
+
+@media screen and (max-width: 990px){
+    .img_log{
+        display: none;
+    }
+}
