@@ -75,12 +75,14 @@
 }
 
 .compte_sans_img {
-    height: 50px;
-    width: auto;
-    padding: 20%;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 30px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    padding: 10%;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    font-size: 40px;
+    display: list-item;
     color: rgba(69, 4, 143, 0.664);
+    text-align: center;
 }
 
 @media (max-width: 900px) {

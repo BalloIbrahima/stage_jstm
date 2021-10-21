@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { interval, Observable, Subscription } from 'rxjs';
 import { MessageService } from 'src/app/services/blog/message.service';
@@ -39,12 +39,12 @@ export class DiscusionComponent implements OnInit,OnDestroy {
 
   private subscription:Subscription;                                     
 
-  constructor(public user_service:UserServiceService,public sujetservice:SujetService,public messageservice:MessageService ,public route : ActivatedRoute,public spinner : NgxSpinnerService) { }
+  constructor(private router:Router, public user_service:UserServiceService,public sujetservice:SujetService,public messageservice:MessageService ,public route : ActivatedRoute,public spinner : NgxSpinnerService) { }
   ngOnInit(): void {
     // setTimeout(()=>{
     //   this.spinner.hide();
     // },3000)
-    const id = this.route.snapshot.params['id'];
+    const id = history.state.id; //this.route.snapshot.params['id'];
     //  detarmination du titre
     this.subscription=interval(1000).subscribe(
       (val)=>{
@@ -98,7 +98,7 @@ export class DiscusionComponent implements OnInit,OnDestroy {
       'idMessage':null,
       'text':this.message,
       'date':'',
-      'sujet':this.sujetservice.sujetby(this.route.snapshot.params['id']),
+      'sujet':this.sujetservice.sujetby(history.state.id),
       'user':this.user_service.utilisateur,
       'admin':null,
     }

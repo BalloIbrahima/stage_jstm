@@ -27,7 +27,7 @@
         <p style="font-size: large;">Veuillez vous connectez pour créer et discuter autour du fora!!</p>
     </div>
     <!-- Listes des sujets -->
-    <div class="liste_sujets" style="display: inline;" [routerLink]="['../chat',sujet.idSujet]" *ngFor="let sujet of sujets | paginate:{
+    <div class="liste_sujets" style="display: inline;" [routerLink]="['../chat',sujet.titre]" [state]="{id:sujet.idSujet}" *ngFor="let sujet of sujets | paginate:{
         itemsPerPage:pageSize,
         currentPage:page,
         totalItems:count
@@ -37,12 +37,12 @@
             <div class="corps_sujet">
                 <div id="connection_icon" class="rounded-circle" style="margin-right:2px ;height: 50px;width: 50px; left: 2px; margin-top: 2px;">
 
-                    <a type="button">
+                    <a>
                         <div class=" btn_authentification_admin">
                             <div class="box">
                                 <div class="our-services settings">
                                     <div class="icon">
-                                        <div class="compte_sans_img rounded-circle">{{imageForum(sujet.titre)}}</div>
+                                        <div class="compte_sans_img ">{{imageForum(sujet.titre)}}</div>
                                     </div>
                                 </div>
                             </div>
