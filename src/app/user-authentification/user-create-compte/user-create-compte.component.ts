@@ -87,26 +87,30 @@ export class UserCreateCompteComponent implements OnInit {
       this.pass_incorect=!this.pass_incorect;
     }else if (this.password==this.re_pass){
       const user=[{"idUser":null,"email":this.email,"password":this.password,"nomComplet":this.nom,"fonction":this.fonction,"imgPath":this.imgPath}]
-      console.log(user)
+      
       this.user_service.creation_compte(user,this.photo).subscribe(res=>{
         if(res.type===HttpEventType.UploadProgress){
           
         }else if(res instanceof HttpResponse){
           this.response = res.body;
-            alert(this.response.message);
-            if(this.response.message=="insertion effectue avec succes"){
-              
-              this.user_service.utilisateur=this.response.body;
+            // alert(this.response.message);
+            
+            if(this.response.message=="isertion effectue avec succes"){
+              this.spinner.hide();
               const dialogclo = this.dialog.closeAll();
               this.user_service.isAuth=true;
-              this.spinner.hide();
+              
+              // this.user_service.utilisateur=this.response.body;
+              localStorage.setItem("person", JSON.stringify(this.response.data));
+              this.user_service.verifier()
+              
+              
               
 
             }else if(this.response.message =="User allready exist"){
               this.mail_exist=!this.mail_exist;
               this.spinner.hide();
-            }
-            if(this.response.message!="insertion effectue avec succes" && this.response.message !="User allready exist" ){
+             }else if(this.response.message != "isertion effectue avec succes" && this.response.message !="User allready exist" ){
               this.acces_server=!this.acces_server;
               this.spinner.hide();
             }
