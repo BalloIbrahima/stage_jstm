@@ -1,0 +1,23 @@
+<form class="container" (ngSubmit)="onSubmit(edit_photo)" #edit_photo="ngForm">
+    <div class="head">
+        <p class="m-b-20 p-b-5 b-b-default f-w-600" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Modifier Ma photo</p>
+    </div>
+
+    <div class="form-row d-center">
+        <img class=" my-2  border profil_tof" src={{icone_user}} alt="Photo de profil" height="150" width="150px" ngModel required>
+    </div>
+    <div [innerHtml]='msg' class="form-row" *ngIf="msg" style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
+    <div class="form-row">
+        <input class="form-control-file my-2 p-1" type="file" accept="/image\/*/" (change)="onSelectFile($event)" ngModel required>
+    </div>
+
+    <div class="footer form-row">
+        <div class="col-lg-6">
+            <button type="submit" class="btn btn-outline-info  mt-3 mb-3" (click)="close()">Annuler</button>
+        </div>
+
+        <div class="col-lg-6">
+            <button type="submit" class="btn btn-success mt-3 mb-3" [disabled]="edit_photo.invalid">Modifier</button>
+        </div>
+    </div>
+</form>

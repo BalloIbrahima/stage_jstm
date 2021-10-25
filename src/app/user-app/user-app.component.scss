@@ -11,6 +11,8 @@
 
 mat-sidenav-content {
     height: 100vh;
+    display: grid;
+    grid-template-rows: auto auto auto;
 }
 
 .all {
@@ -28,13 +30,11 @@ mat-sidenav-content {
 
 .footer {
     padding: 0;
-    margin: 0;
-    bottom: 0;
-    bottom: 0;
+    margin-top: auto;
     background-color: transparent;
     margin-bottom: 0;
     width: 100%;
-    position: sticky;
+    // position: sticky;
 }
 
 .btn_scroll {

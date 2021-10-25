@@ -1,0 +1,24 @@
+<form class="container" (ngSubmit)="onSubmit(edit_nom_cmplet)" #edit_nom_cmplet="ngForm">
+    <div class="head">
+        <p class="m-b-20 p-b-5 b-b-default f-w-600" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Modifier Mon Nom complet</p>
+    </div>
+
+    <div class="body">
+        <div class="form-row">
+            <div class="col-lg-7 ">
+                <input type="text" name="nom_complet" placeholder="nom_complet" class="form-control my-2 p-3" ngModel required>
+            </div>
+        </div>
+        <div [innerHtml]='msg' class="form-row" *ngIf="msg" style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
+
+    </div>
+    <div class="footer form-row">
+        <div class="col-lg-6">
+            <button type="submit" class="btn btn-outline-info  mt-3 mb-3" (click)="close()">Annuler</button>
+        </div>
+
+        <div class="col-lg-6">
+            <button type="submit" class="btn btn-success mt-3 mb-3" [disabled]="edit_nom_cmplet.invalid">Modifier</button>
+        </div>
+    </div>
+</form>

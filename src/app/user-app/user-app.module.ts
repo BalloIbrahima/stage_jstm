@@ -74,6 +74,11 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareModule } from 'ngx-sharebuttons';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchOnComponent } from './forum/search-on/search-on.component';
+import { EditNomcompletComponent } from './mon-compte/edit-nomcomplet/edit-nomcomplet.component';
+import { EditPasswordComponent } from './mon-compte/edit-password/edit-password.component';
+import { EditPhotoComponent } from './mon-compte/edit-photo/edit-photo.component';
+import { EditEmailComponent } from './mon-compte/edit-email/edit-email.component';
+import { EditFonctionComponent } from './mon-compte/edit-fonction/edit-fonction.component';
 
 
 // const rt: Routes=[
@@ -115,7 +120,12 @@ import { SearchOnComponent } from './forum/search-on/search-on.component';
     SearchComponent,
     DialogDeconnectComponent,
     MonCompteComponent,
-    SearchOnComponent
+    SearchOnComponent,
+    EditNomcompletComponent,
+    EditPasswordComponent,
+    EditPhotoComponent,
+    EditEmailComponent,
+    EditFonctionComponent
    
   ],
   imports: [

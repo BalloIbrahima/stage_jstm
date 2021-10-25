@@ -17,7 +17,7 @@ export class UserAuthentificationComponent implements OnInit {
   password:string;
   reponse:any;
   invalid=false;
-  Eror_server=false;
+  msg:any
 
   constructor(public dialog: MatDialog, private user_service:UserServiceService,private spinner : NgxSpinnerService) { }
 
@@ -29,7 +29,7 @@ export class UserAuthentificationComponent implements OnInit {
   //verification de l'authentification de l'utilisateur
   onSubmit(form:NgForm){
     this.invalid=false;
-    this.Eror_server=false
+    this.msg=""
 
     this.spinner.show()
     this.mail=form.value['email'];
@@ -42,7 +42,7 @@ export class UserAuthentificationComponent implements OnInit {
       
     ];
 
-   try{ this.user_service.Login({"email":this.mail,"password":this.password}).subscribe(res=>{
+   try{ this.user_service.Login({"email":this.mail,"password":this.password}).subscribe(async res=>{
       this.reponse=res;
       if(this.reponse.message=="valid"){
         const lecteur=this.reponse.data
@@ -58,15 +58,23 @@ export class UserAuthentificationComponent implements OnInit {
         this.invalid=true;
         this.spinner.hide()
       }
+      await this.timeout(10000)
+      if(res.message=""){
+        this.msg="Impossible d'acceder au server" ;
+        this.spinner.hide()
+
+      }
     })}catch{        
-      this.Eror_server=true;
+      this.msg="Impossible d'acceder au server" ;
       this.spinner.hide()
     }
 
     // console.log(this.reponse.data);
     // this.user_service.isAuth=true;
   }
-
+  timeout(ms:any) {
+    return new Promise(resolve => setTimeout(resolve,ms));
+  }
 
 
   ///pas de compte la  boite de dialogue pour la creation de compte

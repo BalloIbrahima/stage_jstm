@@ -44,6 +44,7 @@ import { AllCommentairesComponent } from './Commentaire/all-commentaires/all-com
 import { ModifierPasswordComponent } from './admin-moncompte/modifier-password/modifier-password.component';
 import { AllArticlesComponent } from './admin-article/all-articles/all-articles.component';
 import { AllMagazinesComponent } from './admin-magasine/all-magazines/all-magazines.component';
+import { AddAdminComponent } from './gestion-admins/add-admin/add-admin.component';
 
 
 
@@ -67,6 +68,7 @@ import { AllMagazinesComponent } from './admin-magasine/all-magazines/all-magazi
     ModifierPasswordComponent,
     AllArticlesComponent,
     AllMagazinesComponent,
+    AddAdminComponent,
  
   ],
   imports: [

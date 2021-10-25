@@ -1,0 +1,14 @@
+.btn_scroll {
+    height: 30px;
+    width: 30px;
+    background: rgb(206, 198, 198);
+    border-radius: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 5%;
+    bottom: 5%;
+    cursor: pointer;
+    z-index: 1000;
+}

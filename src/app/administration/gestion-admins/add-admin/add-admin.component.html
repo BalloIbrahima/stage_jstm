@@ -1,0 +1,48 @@
+<form class="container" (ngSubmit)="onSubmit(add_admin)" #add_admin="ngForm">
+    <div class="head">
+        <p class="m-b-20 p-b-5 b-b-default f-w-600" style="font-size: 25px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Ajouter un Admin</p>
+    </div>
+
+    <div class="body">
+        <div class="form-row">
+            <div class="col-lg-7 ">
+                <input type="text" name="nom" placeholder="Nom" class="form-control my-2 p-3" ngModel required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-lg-7 ">
+                <input type="text" name="prenom" placeholder="Prenom" class="form-control my-2 p-3" ngModel required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-lg-7 ">
+                <input type="text" name="poste" placeholder="Poste" class="form-control my-2 p-3" ngModel required>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-lg-7">
+                <label class="my-1 mr-2 nav-link" hreh="#">
+                    <span id="selected">Type d'administrateur</span>
+                </label>
+                <select class="custom-select my-1 mr-sm-2" id="type_admin">
+                    <option  href="#">Simple administrateur</option> 
+                    <div class="dropdown-divider"></div>
+                    <option  href="#">Super administrateur</option> 
+                </select>
+            </div>
+
+        </div>
+        <div [innerHtml]='msg' class="form-row" *ngIf="msg" style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
+
+    </div>
+    <div class="footer form-row">
+        <div class="col-lg-6">
+            <button type="button" class="btn btn-outline-info  mt-3 mb-3" (click)="close()">Annuler</button>
+        </div>
+
+        <div class="col-lg-6">
+            <button type="submit" class="btn btn-success mt-3 mb-3" [disabled]="add_admin.invalid">Modifier</button>
+        </div>
+    </div>
+</form>
