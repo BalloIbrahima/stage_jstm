@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AdminLoginService } from 'src/app/services/admin_login/admin-login.service';
 import { UserServiceService } from 'src/app/services/user_service/user-service.service';
 
 @Component({
@@ -17,8 +18,11 @@ export class AddAdminComponent implements OnInit {
   type_admin:any
   password:any
   msg:any
+  photo:any=null
+  super_admin:boolean
+  reponse_admin:any
 
-  constructor(public dialog: MatDialog, private user_service:UserServiceService,private spinner : NgxSpinnerService) { }
+  constructor(public dialog: MatDialog, private user_service:UserServiceService,private admin_service:AdminLoginService, private spinner : NgxSpinnerService) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +35,8 @@ export class AddAdminComponent implements OnInit {
     var choix_type=select_type.selectedIndex;
 
     this.type_admin=select_type.options[choix_type].value;
+    if(this.type_admin=="Super administrateur") {this.super_admin=true}
+    else {this.super_admin=false}
 
     this.nom=form.value['nom'];
     this.prenom=form.value['prenom'];
@@ -41,9 +47,42 @@ export class AddAdminComponent implements OnInit {
 
     this.msg=""
     
-  
-    //verification si l'ancien mots de passe est correct
+    const admin={
+      "idAdmin":null,
+      "penom":this.prenom,
+      "nom":this.nom,
+      "poste":this.poste,
+      "email":null,
+      "password":"JSTM@admin",
+      "superAdmin":this.super_admin,
+      "imgPath":null,
+
+    }
+    
     try{ 
+      this.admin_service.Register(admin,this.photo).subscribe(res=>{
+        this.reponse_admin=res
+        if(this.reponse_admin.message=="isertion effectue avec succes"){
+          this.spinner.hide();
+          const dialogclo = this.dialog.closeAll();
+          // this.user_service.isAuth=true;
+          
+          // this.user_service.utilisateur=this.response.body;
+          localStorage.setItem("all_admin", JSON.stringify(this.reponse_admin.data));
+          this.user_service.verifier()
+          
+          
+          
+
+        }else if(this.reponse_admin.message =="Admin allready exist"){
+          this.msg="Cet adresse email existe déja";
+          this.spinner.hide();
+         }else if(this.reponse_admin.message != "isertion effectue avec succes" && this.reponse_admin.message !="User allready exist" ){
+          this.msg="Erreur d'acces au serveur"
+          this.spinner.hide();
+        }
+      })
+
         // await this.timeout(10000)
         // if(res.message=""){
         //   this.msg="Vérifier votre connexion internet." ;

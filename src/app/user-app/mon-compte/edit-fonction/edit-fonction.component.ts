@@ -1,3 +1,4 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,22 +30,37 @@ export class EditFonctionComponent implements OnInit {
     this.spinner.show()
 
     this.msg=""
-    this.user_service.utilisateur.fonction=this.fonction
+    const user=[{
+      "idUser":this.user_service.utilisateur.idUser,
+      "email":this.user_service.utilisateur.email,
+      "password":this.user_service.utilisateur.password,
+      "nomComplet":this.user_service.utilisateur.nomComplet,
+      "fonction":this.fonction,
+      "imgPath":this.user_service.utilisateur.imgPath,
+    }]
+    // this.user_service.utilisateur.fonction=this.fonction
   
     //verification si l'ancien mots de passe est correct
-    try{ this.user_service.Modifier_compte(this.user_service.utilisateur,this.new_img).subscribe(async res=>{
-        this.reponse_change=res;
-        if(this.reponse_change.message=="chnger"){
+    try{ this.user_service.Modifier_compte(user,this.new_img).subscribe( async res=>{
+      if(res.type===HttpEventType.UploadProgress){
+          
+      }else if(res instanceof HttpResponse){
+        this.reponse_change=res.body;
+        console.log('ppppppp'+res.body)
+        
+        if(this.reponse_change.message=="succes"){
           const lecteur=this.reponse_change.data
-        localStorage.setItem("person", JSON.stringify(lecteur));
+          localStorage.setItem("person", JSON.stringify(lecteur));
 
-        const dialogclo = this.dialog.closeAll();
-        this.spinner.hide()
-        this.user_service.verifier()
+          const dialogclo = this.dialog.closeAll();
+          this.spinner.hide()
+          this.user_service.verifier()
         }else{
           this.msg="Une erreur s'est produite";
           this.spinner.hide()
         }
+      }
+      
 
         await this.timeout(10000)
         this.msg="Vérifier votre connexion internet." ;

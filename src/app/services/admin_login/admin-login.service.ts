@@ -1,6 +1,7 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,24 @@ export class AdminLoginService {
   my_compte_open=false;
   isAuth=false;
   admin:any;
+  private env=environment
+
+  verifier(){
+   
+    this.admin = JSON.parse(localStorage.getItem("admin") || '');
+    if(this.admin==''){
+      this.isAuth=true;
+    }else{
+      this.isAuth=true;
+      console.log('okk')
+    }
+    
+
+}
   constructor(private http:HttpClient) { }
 
    Login(admin:any):Observable<any>{
-    return this.http.post("http://192.168.43.11:8080/auth",admin);
+    return this.http.post(`${this.env.api}/auth`,admin);
   }
   //creation de compte
   Register(admin:any,photo:File){
@@ -22,14 +37,14 @@ export class AdminLoginService {
     data.append('file', photo);
 
     data.append('admin', JSON.stringify(admin).slice(1,JSON.stringify(admin).lastIndexOf(']')));
-    const new_request=new HttpRequest('POST','http://192.168.43.11:8080/admin', data,{reportProgress:true});
+    const new_request=new HttpRequest('POST',`${this.env.api}/admin`, data,{reportProgress:true});
     return this.http.request(new_request)
 
   }
 
   // recuperation des admins
   AllAdmin():Observable<any>{
-    return this.http.get("http://192.168.43.11:8080/ListeAdmins");
+    return this.http.get("`${this.env.api}/Admin`");
   }
 
   // modification du compte d'un admin
@@ -38,14 +53,14 @@ export class AdminLoginService {
     data.append('file', photo);
 
     data.append('admin', JSON.stringify(admin).slice(1,JSON.stringify(admin).lastIndexOf(']')));
-    const new_request=new HttpRequest('POST','http://192.168.43.11:8080/modifie_admin', data,{reportProgress:true});
+    const new_request=new HttpRequest('PUT',`${this.env.api}/admin`, data,{reportProgress:true});
     return this.http.request(new_request)
 
   }
 
   // modification mots de passe admin
   Password_review(admin:any):Observable<any>{
-    return this.http.post("http://192.168.43.11:8080/Modifie_password",admin);
+    return this.http.post(`${this.env.api}/admin`,admin);
   }
 
 }

@@ -1,3 +1,4 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -34,7 +35,10 @@ export class EditNomcompletComponent implements OnInit {
   
     //verification si l'ancien mots de passe est correct
     try{ this.user_service.Modifier_compte(this.user_service.utilisateur,this.new_img).subscribe(async res=>{
-        this.reponse_change=res;
+      if(res.type===HttpEventType.UploadProgress){
+          
+      }else if(res instanceof HttpResponse){
+        this.reponse_change=res.body;
         if(this.reponse_change.message=="chnger"){
           const lecteur=this.reponse_change.data
         localStorage.setItem("person", JSON.stringify(lecteur));
@@ -49,6 +53,8 @@ export class EditNomcompletComponent implements OnInit {
 
         await this.timeout(10000)
         this.msg="Vérifier votre connexion internet." ;
+      }
+      
 
       })
       
