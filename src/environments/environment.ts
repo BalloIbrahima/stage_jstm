@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  api:"http://172.16.4.52:8080"
+  // api:"http://192.168.43.8:8080"
+  // api:"http://172.16.4.51:8080"
+    api:"http://172.16.1.16:8080"
+
+
 };
 
 /*

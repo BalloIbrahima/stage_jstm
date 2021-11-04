@@ -88,8 +88,7 @@ export class CreerSujetComponent implements OnInit {
               if(this.reponse_message.message=="create"){
                 this.messageservice.messages=this.reponse_message.data;
                 const id=this.blogservice.sujet.idSujet;
-                this.router.navigate(['../chat',this.blogservice.sujet.idSujet],{relativeTo:this.active_route})
-              
+                this.router.navigate(['../chat',this.blogservice.sujet.titre],{state:{id:this.blogservice.sujet.idSujet},relativeTo:this.active_route})
                 console.log("trueee"+this.blogservice.sujet.idSujet)
                 // this.router.navigate(['../'t])
               }else{

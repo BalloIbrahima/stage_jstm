@@ -28,7 +28,8 @@ export class ForumAcceuilComponent implements OnInit, OnChanges ,OnDestroy{
   pageSize=5;
   maxS:any;
   nbr_table:any[]=[];
-  
+  nbr_vue:any[]=[];
+
   private subscription:Subscription;                                     
   constructor(public user_service:UserServiceService,public sujet_service:SujetService,public messageservice:MessageService ,public route : ActivatedRoute,public spinner : NgxSpinnerService) { }
 
@@ -52,6 +53,8 @@ export class ForumAcceuilComponent implements OnInit, OnChanges ,OnDestroy{
         this.getAllsubject()
       }
     )
+    // var date=new Date()
+    // console.log( date.toLocaleString()    )
     
   }
   getRequestParams(page:number,pageSize:number):any{
@@ -167,7 +170,7 @@ export class ForumAcceuilComponent implements OnInit, OnChanges ,OnDestroy{
       
       if(this.sujets.length==0){
           this.retour_sujet=res;
-          // this.sujet_service.les_sujet=this.retour_sujet.data.sujets
+            this.sujet_service.les_sujet=this.retour_sujet.data.sujets
             this.sujets=this.retour_sujet.data.sujets
             this.count=this.retour_sujet.data.totalItms;
           // this.sujets=this.sujet_service.les_sujet
@@ -175,6 +178,10 @@ export class ForumAcceuilComponent implements OnInit, OnChanges ,OnDestroy{
           for(let index =0;res.data.sujets.length;index++){
             this.messageservice.nbreMessage(res.data.sujets[index].idSujet).subscribe(ress=>{
               this.nbr_table.push(ress);
+  
+            })
+            this.messageservice.nbreVue(res.data.sujets[index].idSujet).subscribe(ress=>{
+              this.nbr_vue.push(ress);
   
             })
           }
@@ -188,14 +195,18 @@ export class ForumAcceuilComponent implements OnInit, OnChanges ,OnDestroy{
             this.retour_sujet.data.currentPage =res.data.currentPage
 
             this.nbr_table=[];
-            
+            this.nbr_vue=[];
+
             for(let index =0;res.data.sujets.length;index++){
               this.messageservice.nbreMessage(this.retour_sujet.data.sujets[index].idSujet).subscribe(ress=>{
                 this.nbr_table.push(ress);
 
               })
+              this.messageservice.nbreVue(this.retour_sujet.data.sujets[index].idSujet).subscribe(ress=>{
+                this.nbr_vue.push(ress);
+
+              })
             }
-            console.log(this.nbr_table);
 
       }
     })

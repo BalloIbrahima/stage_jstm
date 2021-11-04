@@ -36,7 +36,8 @@ export class DiscusionComponent implements OnInit,OnDestroy {
   count=0;
   pageSize=5;
   maxS=3;
-
+  id:number;
+  
   private subscription:Subscription;                                     
 
   constructor(private router:Router, public user_service:UserServiceService,public sujetservice:SujetService,public messageservice:MessageService ,public route : ActivatedRoute,public spinner : NgxSpinnerService) { }
@@ -45,6 +46,15 @@ export class DiscusionComponent implements OnInit,OnDestroy {
     //   this.spinner.hide();
     // },3000)
     const id = history.state.id; //this.route.snapshot.params['id'];
+    this.id=history.state.id;
+
+    this.messageservice.addVue({
+      'idVue':null,
+      'date':'',
+      'article':null,
+      'sujet':this.sujetservice.sujetby(this.id)
+    }).subscribe(res=>{})
+
     //  detarmination du titre
     this.subscription=interval(1000).subscribe(
       (val)=>{
@@ -52,12 +62,9 @@ export class DiscusionComponent implements OnInit,OnDestroy {
       }
     )
 
-  
     // if(this.all_message.length>3){
     //   this.spinner.hide()
     // }
-
-  
 
   }
 
@@ -98,7 +105,7 @@ export class DiscusionComponent implements OnInit,OnDestroy {
       'idMessage':null,
       'text':this.message,
       'date':'',
-      'sujet':this.sujetservice.sujetby(history.state.id),
+      'sujet':this.sujetservice.sujetby(this.id),
       'user':this.user_service.utilisateur,
       'admin':null,
     }
@@ -106,13 +113,9 @@ export class DiscusionComponent implements OnInit,OnDestroy {
     this.messageservice.creation_message(messags).subscribe(res=>{
       this.retour_requete=res;
       console.log(this.retour_requete.message)
-      if(this.retour_requete.message=='succes'){
-        this.messageservice.messages=this.retour_requete.data;
+      if(this.retour_requete.message=='create'){
         console.log("create")
-        //on doit actualiser la page après
-        // pour sa on doit faire appel à ngOninit
-
-        // ---------------
+        form.resetForm()
       }
 
     })
@@ -123,8 +126,7 @@ export class DiscusionComponent implements OnInit,OnDestroy {
   getAllMessages(id:any){
     const params=this.getRequestParams(this.page,this.pageSize)
     this.messageservice.sujet_de(id,params).subscribe(res=>{
-      // console.log(params)
-      // console.log(res.data.messages)
+
       this.maxS=res.data.totalPages
       if(this.all_message.length==0){
         this.reponse_sujet=res
@@ -134,11 +136,6 @@ export class DiscusionComponent implements OnInit,OnDestroy {
         this.all_message=res.data.messages
 
         this.reponse_sujet.data.currentPage =res.data.currentPage
-        
-        // for (let index = this.reponse_sujet.data.lenght; index < res.data.messages.length; index++) {
-          
-        //   // this.all_message.push(res.data.messages[index]) ;        
-        // }
       }
     })
   }
@@ -147,169 +144,72 @@ export class DiscusionComponent implements OnInit,OnDestroy {
     this.page=event;
   }
 
+  il_ya(date_back:Date){
+    var date=new Date();
+    var today_date= date.getFullYear()+'-'+ date.getMonth()+1+'-'+date.getDay()
+    var today_hours=date.getHours()+':'+date.getMinutes+':'+date.getSeconds()
+    let sql_date=new Date(date_back)
+    
+    var datetime=today_date+'T '+today_hours
+    // var datetime=date.toLocaleString()
+    let date2=new Date()
 
-  
-
-  
-  
-
-
-  discussion=[
-    {
-      id:1,
-      text:"slut tout le monde moi c'est Diallo Aboubacar Mohamed",
-      id_createur:"1236",
-      id_sujet:3,
-
-    },
-    {
-      id:2,
-      text:"slut tout le monde moi c'est Diallo Ballo Ibrahima",
-      id_createur:1234,
-      id_sujet:1,
-
-    },
-    {
-      id:3,
-      text:"slut tout le monde moi c'est Ballo Mohamed",
-      id_createur:1237,
-      id_sujet:4,
-    },
-    {
-      id:4,
-      text:"slut tout le monde moi c'est Konake Adama",
-      id_sujet:2,
-      id_createur:1235,
-
-    },
-    // 
-    {
-      id:1,
-      text:"commen sa va man tu vas b1",
-      id_createur:1234,
-      id_sujet:1,
-
-    },
-    {
-      id:2,
-      text:"Wai broooo sa roule",
-      id_createur:1235,
-      id_sujet:3,
-
-    },
-    {
-      id:3,
-      text:"slut brooooooooooooo bllo cc",
-      id_createur:1236,
-      id_sujet:4,
-    },
-    {
-      id:4,
-      text:"yaii good morning how are you???",
-      id_sujet:2,
-      id_createur:1237,
-
-    },
-    // 
-    {
-      id:2,
-      text:"rebonjour a tout un chacunnn",
-      id_createur:"1236",
-      id_sujet:3,
-
-    },
-    {
-      id:3,
-      text:"ayuuu  cc Diallo Ballo Ibrahima",
-      id_createur:1234,
-      id_sujet:1,
-
-    },
-    {
-      id:1,
-      text:"yoo les mannn cc ",
-      id_createur:1237,
-      id_sujet:4,
-    },
-    {
-      id:4,
-      text:"cc les gas  la matine",
-      id_sujet:2,
-      id_createur:1235,
-
-    },
-
-  ]
+    // date_table=this.dateDiff(sql_date,date)
+    
+    return this.dateDiff(sql_date,date);
+  }
 
 
+  dateDiff(date1:any , date2:any){
+    
+    var diff:any = {} ;                          // Initialisation du retour
+    var tmp = date2 - date1;
 
-  utilisateurs=[
-    {
-      id:1234,
-      nom_complet:"Ballo Ibrahima",
-      image:"assets/img/mike.jpg"
+    tmp = Math.floor(tmp/1000);             // Nombre de secondes entre les 2 dates
+    diff.sec = tmp % 60;                    // Extraction du nombre de secondes
+ 
+    tmp = Math.floor((tmp-diff.sec)/60);    // Nombre de minutes (partie entière)
+    diff.min = tmp % 60;                    // Extraction du nombre de minutes
+ 
+    tmp = Math.floor((tmp-diff.min)/60);    // Nombre d'heures (entières)
+    diff.hour = tmp % 24;                   // Extraction du nombre d'heures
+     
+    tmp = Math.floor((tmp-diff.hour)/24);   // Nombre de jours restants
+    diff.day = tmp;
 
-    },
-    {
-      id:1235,
-      nom_complet:"KONAKE Adama",
-      image:"assets/img/ex1.jpg"
+    if (diff.day==0){
+      if(diff.hour==0){
+        if(diff.min==0){
+          return "A l'instant "
+        }else{
+          if(diff.min>1){
+            return "Il y'a "+ diff.min +' minutes'
+        
+          }else{
+            return "Il y'a "+ diff.min +' minute'
+        
+          }
+        }
+      }else{
+        if(diff.hour>1){
+          return "Il y'a "+ diff.hour +' heures'
+        }else{
+          return "Il y'a "+ diff.hour +' heure'
+        }
+      }
 
-    },
-    {
-      id:1236,
-      nom_complet:"Diallo Aboubacar",
-      image:"assets/img/ex1.jpg"
+    }else{
+      if(diff.day>30){
+        return "Il y'a "+ date1
+      }else if(diff.day>1){
+        return "Il y'a "+ diff.day +' jours'
+      }
+      else{
+        return "Il y'a "+ diff.day +' jour'
+      }
+    }  
+  }
 
-    },
-    {
-      id:1237,
-      nom_complet:"Ballo Mohamed",
-      image:"assets/img/mike.jpg"
-
-    },
-  ]
-
-  sujets=[
-    {
-      id:1,
-      id_createur:1234,
-      tire:"Le fonio est un patatè patata azertyuiopNQUI A DES patati patata",
-      rubrique:"Agriculture",
-      categorie:"Mali",
-      date_creation:"12/12/2019",
-
-    },
-
-    {
-      id:2,
-      id_createur:1235,
-      tire:"L'art de la culture Africaine ",
-      rubrique:"Environnement",
-      categorie:"Afrique",
-      date_creation:"12/12/2020",
-
-    },
-
-    {
-      id:3,
-      id_createur:1236,
-      tire:"La disparition des poissons",
-      rubrique:"Environnement",
-      categorie:"Mali",
-      date_creation:"12/02/2012",
-
-    },
-    {
-      id:4,
-      id_createur:1237,
-      tire:"Le Covid 19 et les maliens",
-      rubrique:"Sante",
-      categorie:"Mali",
-      date_creation:"12/12/2021",
-
-    },
-  ]
   ngOnDestroy(){
     this.subscription.unsubscribe;
   }

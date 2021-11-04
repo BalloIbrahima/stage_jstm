@@ -5,7 +5,7 @@ import { UserAuthentificationComponent } from 'src/app/user-authentification/use
 import * as $ from 'jquery';
 import { UserServiceService } from 'src/app/services/user_service/user-service.service';
 import { DialogDeconnectComponent } from '../dialog-deconnect/dialog-deconnect.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
 
 declare var require : any;
@@ -89,7 +89,8 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 
     dialog_deconnect.afterClosed().subscribe(result => {
       if(this.user_service.my_compte_open==true){
-        this.router.navigate(['../jstm/mon_compte']);
+        // this.router.navigate(['../jstm/mon_compte']);
+        this.router.navigate(['./../jstm/mon_compte'],{relativeTo:this.active_route})
         console.log(this.router.getCurrentNavigation.name)
       }else if(this.user_service.my_compte_open==false){
         if(this.user_service.page_mon_compte==true){
@@ -105,7 +106,7 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private router:Router,public dialog: MatDialog,   public user_service: UserServiceService,private apiServicem : ArticleService) {
+  constructor(public router:Router,private active_route:ActivatedRoute,public dialog: MatDialog,   public user_service: UserServiceService,private apiServicem : ArticleService) {
     // console.log(this.nomC[0][0])
 
     window.addEventListener("scroll",()=>{
@@ -115,7 +116,7 @@ export class NavigationMenuComponent implements OnInit, OnDestroy {
       if(window.scrollY >= 78){
         toggle?.classList.add('toggle_apparait')  
         toggle?.classList.remove('d-none')  
-
+        // console.log(">78")
 
       }
       else if(window.scrollY <= 78){

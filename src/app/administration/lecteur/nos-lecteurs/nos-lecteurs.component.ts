@@ -8,7 +8,6 @@ import { UserServiceService } from 'src/app/services/user_service/user-service.s
 })
 export class NosLecteursComponent implements OnInit {
 
-  Lecteur:any;
   Lecteurs:any;
   retour_lectueur:any;
   constructor(public  lecteur:UserServiceService){ }
@@ -18,7 +17,7 @@ export class NosLecteursComponent implements OnInit {
     //recuperation de la liste des lecteurs
     this.lecteur.Nos_lecteurs().subscribe(res=>{
       this.retour_lectueur=res;
-      this.Lecteurs=this.retour_lectueur.data;
+      this.Lecteurs=this.retour_lectueur;
 
     })
 

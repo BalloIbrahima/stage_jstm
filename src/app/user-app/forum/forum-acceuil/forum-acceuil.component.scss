@@ -80,9 +80,16 @@
     padding: 10%;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
     font-size: 40px;
-    display: list-item;
+    // display: list-item;
     color: rgba(69, 4, 143, 0.664);
     text-align: center;
+}
+
+.titre_sujet {
+    font-size: medium;
+    color: rgb(13, 13, 94);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-bottom: 0px;
 }
 
 @media (max-width: 900px) {
@@ -148,5 +155,15 @@
         align-items: center;
         height: 0;
         display: none;
+    }
+    .compte_sans_img {
+        margin-top: 5px;
+        text-transform: uppercase;
+        padding: 5%;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+        font-size: 20px;
+        // display: list-item;
+        color: rgba(69, 4, 143, 0.664);
+        text-align: center;
     }
 }

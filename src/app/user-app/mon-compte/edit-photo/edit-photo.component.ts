@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { interval, Subscription } from 'rxjs';
 import { UserServiceService } from 'src/app/services/user_service/user-service.service';
 
 @Component({
@@ -9,15 +12,22 @@ import { UserServiceService } from 'src/app/services/user_service/user-service.s
   templateUrl: './edit-photo.component.html',
   styleUrls: ['./edit-photo.component.scss']
 })
-export class EditPhotoComponent implements OnInit {
+export class EditPhotoComponent implements OnInit, OnDestroy {
 
   photo:any=null;
   icone_user:string="assets/img/avatar.svg";
   msg:any
   reponse_change:any
 
+  subscription:Subscription;
+  compte_sans_img="";
+  nomC:any;
+  tableau_img:any;
 
-  constructor(public dialog: MatDialog, private user_service:UserServiceService,private spinner : NgxSpinnerService) { }
+  constructor(private router:Router,public dialog: MatDialog, private user_service:UserServiceService,private spinner : NgxSpinnerService) { }
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
     // if (this.user_service.utilisateur.imgPath==""){
@@ -25,6 +35,11 @@ export class EditPhotoComponent implements OnInit {
     // }else{
     //   this.icone_user=this.user_service.utilisateur.imgPath
     // }
+    this.subscription=interval(1000).subscribe(
+      (val)=>{
+        this.connected()
+      }
+    )
 
   }
 
@@ -57,25 +72,61 @@ export class EditPhotoComponent implements OnInit {
       }
     }
   }
+  connected(){
+    try{
+      if(this.user_service.utilisateur.imgPath==""){
+        this.tableau_img=this.user_service.utilisateur.nomComplet
+        this.nomC=this.tableau_img.split(" ")
 
+      //
+        try{
+          this.compte_sans_img=this.nomC[0][0]+this.nomC[1][0]
+
+        }catch{
+          this.compte_sans_img=this.nomC[0][0]+this.nomC[0][1]
+        }
+
+      }
+    }catch{}
+  }
   // reception du formulaire
   onSubmit(form:NgForm){
    
     this.spinner.show()
-
+    this.user_service.utilisateur.imgPath="http://192.168.43.8/adamakonake@gmail.com.PNG"
     this.msg=""
-    this.user_service.utilisateur.imgPath=""
+    // this.user_service.utilisateur.imgPath=""
+    localStorage.removeItem("person");
+    const user=[{
+      "idUser":this.user_service.utilisateur.idUser,
+      "email":this.user_service.utilisateur.email,
+      "password":this.user_service.utilisateur.password,
+      "nomComplet":this.user_service.utilisateur.nomComplet,
+      "fonction":this.user_service.utilisateur.fonction,
+      "imgPath":"",
+    }]
+    // this.user_service.utilisateur.fonction=this.fonction
   
     //verification si l'ancien mots de passe est correct
-    try{ this.user_service.Modifier_compte(this.user_service.utilisateur,this.photo).subscribe(async res=>{
-        this.reponse_change=res;
-        if(this.reponse_change.message=="chnger"){
+    try{ this.user_service.Modifier_compte(user,this.photo).subscribe( async res=>{
+      if(res.type===HttpEventType.UploadProgress){
+          
+      }else if(res instanceof HttpResponse){        
+        this.reponse_change=res.body;
+        if(this.reponse_change.message=="succes"){
           const lecteur=this.reponse_change.data
-        localStorage.setItem("person", JSON.stringify(lecteur));
+          localStorage.setItem("person", JSON.stringify(lecteur));
 
-        const dialogclo = this.dialog.closeAll();
-        this.spinner.hide()
-        this.user_service.verifier()
+          const dialogclo = this.dialog.closeAll();
+          this.spinner.hide()
+          this.user_service.verifier()
+          // this.router.navigateByUrl('/refresh',{
+          //   skipLocationChange:true
+          // }).then(()=>{
+          //   this.router.navigate(['mon_compte'])
+          // })
+          window.location.reload()
+
         }else{
           this.msg="Une erreur s'est produite";
           this.spinner.hide()
@@ -83,8 +134,8 @@ export class EditPhotoComponent implements OnInit {
 
         await this.timeout(10000)
         this.msg="Vérifier votre connexion internet." ;
-
-      })
+      }
+    })
       
     }catch{        
       this.msg="Impossible d'acceder au server" ;

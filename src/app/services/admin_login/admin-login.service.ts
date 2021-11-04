@@ -12,6 +12,7 @@ export class AdminLoginService {
   my_compte_open=false;
   isAuth=false;
   admin:any;
+  ajout:boolean;
   private env=environment
 
   verifier(){
@@ -32,7 +33,7 @@ export class AdminLoginService {
     return this.http.post(`${this.env.api}/auth`,admin);
   }
   //creation de compte
-  Register(admin:any,photo:File){
+  Register(admin:any,photo:File):Observable<any>{
     const data:FormData=new FormData();
     data.append('file', photo);
 
@@ -44,7 +45,7 @@ export class AdminLoginService {
 
   // recuperation des admins
   AllAdmin():Observable<any>{
-    return this.http.get("`${this.env.api}/Admin`");
+    return this.http.get(`${this.env.api}/Admin`);
   }
 
   // modification du compte d'un admin

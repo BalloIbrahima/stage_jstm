@@ -1,5 +1,32 @@
 <div class="container" *ngIf="Lecteurs!=null">
+    <div class="card-body">
+        <table width="100%">
+            <thead class="titre_table">
+                <tr>
+                    <td>Nom complet </td>
+                    <td></td>
+                    <td>Fonction</td>
+                    <td>Email</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lecteur of Lecteurs ; let i=index">
+                    <td [innerHTML]="lecteur.nomComplet"></td>
+                    <td></td>
+                    <td>{{lecteur.fonction}}</td>
+                    <td>{{lecteur.email}}</td>
+                    <td>12</td>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="container h1 text-white pt-5" *ngIf="Lecteurs==null">
     Aucun lecteur pour le moments

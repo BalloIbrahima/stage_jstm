@@ -27,12 +27,8 @@
                     <div class="box">
                         <div class="our-services settings">
                             <div class="icon">
-                                <img id="admin_connection_icon" class="rounded-circle" src="assets/img/mike.jpg" style="margin: auto;height: 50px;width: 50px;">
-
-                                <!--
-                                <div class="compte_sans_img rounded-circle" [innerHtml]="compte_sans_img" ngIf="user_service.utilisateur.imgPath==default_user_img" pour le label ></div>                                    
-                                    <img id="admin_connection_icon" class="rounded-circle" src="assets/img/mike.jpg" style="margin: auto;height: 50px;width: 50px;" *ngIf="user_service.utilisateur.imgPath !=default_user_img" >
-                                        [src]="user_service.utilisateur.imgPath" -->
+                                <div *ngIf="user_service.utilisateur.imgPath ==''" class="compte_sans_img rounded-circle" [innerHtml]="compte_sans_img"></div>
+                                <img id="admin_connection_icon" class="rounded-circle" src="{{user_service.utilisateur.imgPath}}" style="margin: auto;height: 50px;width: 50px;" *ngIf="user_service.utilisateur.imgPath !=''">
                             </div>
                         </div>
                     </div>

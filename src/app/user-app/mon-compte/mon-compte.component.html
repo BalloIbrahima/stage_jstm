@@ -1,3 +1,4 @@
+<!-- <ngx-spinner [fullScreen]="true" type="ball-fall"></ngx-spinner> -->
 <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
@@ -6,7 +7,11 @@
                     <div class="row m-l-0 m-r-0">
                         <div class="col-sm-4  user-profile" style="margin: auto; background-color: rgb(95, 158, 160);">
                             <div class="card-block text-center text-white">
-                                <div class="m-b-25" (click)="change_photo()"> <img src="{{icone_user}}" height="50px" class="img-radius" alt="User-Profile-Image"> </div>
+                                <div class="m-b-25" (click)="change_photo()">
+                                    <img *ngIf="user_service.utilisateur.imgPath !=''" [src]="user_service.utilisateur.imgPath" height="50px" class="img-radius" alt="User-Profile-Image">
+                                    <div *ngIf="user_service.utilisateur.imgPath ==''" class="compte_sans_img rounded-circle" [innerHtml]="compte_sans_img" style="height: 50px;"></div>
+
+                                </div>
                                 <h6 class="f-w-600" style="cursor: pointer;" (click)="change_nom_complet()">{{user_service.utilisateur.nomComplet}}</h6>
                                 <!-- <p>Web Designer</p> <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i> -->
                             </div>
@@ -17,8 +22,8 @@
                                 <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600" style="cursor: pointer;" (click)="change_email()">Email</p>
-                                        <h6 class="text-muted f-w-400" style="cursor: pointer;" (click)="change_email()">{{user_service.utilisateur.email}}</h6>
+                                        <p class="m-b-10 f-w-600" style="cursor: pointer;">Email</p>
+                                        <h6 class="text-muted f-w-400" style="cursor: pointer;">{{user_service.utilisateur.email}}</h6>
                                     </div>
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600" style="cursor: pointer;" (click)="change_fonction()">Fonction</p>

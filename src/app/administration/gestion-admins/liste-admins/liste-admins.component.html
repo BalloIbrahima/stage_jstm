@@ -1,5 +1,32 @@
 <div class="container" *ngIf="Les_Admins!=null">
+    <div class="card-body">
+        <table width="100%">
+            <thead class="titre_table">
+                <tr>
+                    <td>Nom</td>
+                    <td>Prenom</td>
+                    <td>Poste</td>
+                    <td>Email</td>
+                    <td>Type</td>
+                    <td></td>
+                    <td></td>
 
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let admin of Les_Admins ; let i=index">
+                    <td [innerHTML]="admin.nom"></td>
+                    <td>{{admin.prenom}}</td>
+                    <td>{{admin.poste}}</td>
+                    <td>{{admin.email}}</td>
+                    <td>12</td>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="container h1 text-white pt-5" *ngIf="Les_Admins==null">
     Aucun Admins pour le moments
@@ -7,6 +34,7 @@
 
 <div class="btn_scroll" (click)="add_admin()">
     <span class="material-icons">
-        keyboard_arrow_up
+        <!-- keyboard_arrow_up -->
+        new_label
     </span>
 </div>

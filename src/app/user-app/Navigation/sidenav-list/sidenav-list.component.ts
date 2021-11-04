@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ArticleService } from 'src/app/services/article/article.service';
 import { UserAuthentificationComponent } from 'src/app/user-authentification/user-authentification.component';
@@ -6,6 +6,7 @@ import * as $ from 'jquery';
 import { UserServiceService } from 'src/app/services/user_service/user-service.service';
 import { DialogDeconnectComponent } from './../../dialog-deconnect/dialog-deconnect.component';
 import { Router } from '@angular/router';
+import { interval, Subscription } from 'rxjs';
 
 declare var require : any;
 const FileSaver = require('file-saver');
@@ -14,7 +15,7 @@ const FileSaver = require('file-saver');
   templateUrl: './sidenav-list.component.html',
   styleUrls: ['./sidenav-list.component.scss']
 })
-export class SidenavListComponent implements OnInit {
+export class SidenavListComponent implements OnInit , OnDestroy{
 
   @Output() public sidenavClose=new EventEmitter();
 
@@ -22,7 +23,6 @@ export class SidenavListComponent implements OnInit {
   sticky: boolean = false;
   elementPosition: any;
   Is_Auth=false;
-  compte_sans_img="IB";
   default_user_img="default_user_img";
   
 
@@ -32,11 +32,42 @@ export class SidenavListComponent implements OnInit {
   icone_court:string="assets/icones/jstm_court.png";
   icone_user:string="assets/icones/user_name.png";
 
+  subscription:Subscription;
+  compte_sans_img="";
+  nomC:any;
+  tableau_img:any;
+  
   ngOnInit(): void {
     $('#staticBackdrop1').appendTo('body');
+    // if (this.user_service.utilisateur.imgPath==""){
+    //   this.icone_user="assets/img/avatar.svg"
+    // }else{
+    //   this.icone_user=this.user_service.utilisateur.imgPath
+    // }
+    this.subscription=interval(1000).subscribe(
+      (val)=>{
+        this.connected()
+      }
+    )
 
   }
+  connected(){
+    try{
+      if(this.user_service.utilisateur.imgPath==""){
+        this.tableau_img=this.user_service.utilisateur.nomComplet
+        this.nomC=this.tableau_img.split(" ")
 
+      //
+        try{
+          this.compte_sans_img=this.nomC[0][0]+this.nomC[1][0]
+
+        }catch{
+          this.compte_sans_img=this.nomC[0][0]+this.nomC[0][1]
+        }
+
+      }
+    }catch{}
+  }
 
 
   openDialog(): void {
@@ -104,7 +135,9 @@ export class SidenavListComponent implements OnInit {
 
   }
 
-
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 
 //larrivée des magazines 
 

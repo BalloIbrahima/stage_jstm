@@ -10,7 +10,7 @@ export class UserServiceService implements OnDestroy{
   page_mon_compte=false;
   my_compte_open=false;
   isAuth=false;
-  utilisateur:any;
+  utilisateur:any=null;
   IsAdmin=false;
   private env=environment;
   subscription: Subscription;
@@ -68,7 +68,7 @@ export class UserServiceService implements OnDestroy{
   }
   //la listes des lecteurs
   Nos_lecteurs(){
-    return this.http.get(`${this.env.api}/LesLecteurs`)
+    return this.http.get(`${this.env.api}/users`)
   }  
 
   // recuperation d'un lecteur en particulier

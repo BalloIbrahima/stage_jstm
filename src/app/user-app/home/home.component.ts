@@ -95,8 +95,7 @@ export class HomeComponent implements OnInit {
   // couleur du bg dele rubrique
 
   giveCouleur(rubrique:any){
-    const bg_rubrique=document.getElementById("rubrique")?.style;
-    // *const  bg_rubrique=document.querySelector('.rubrique')?.getElementsByTagName;*/
+    var bg_rubrique=document.getElementById(rubrique)?.style.backgroundColor;
     if(rubrique=="Agriculture"){
       this.color="#034d07" 
     }else if(rubrique=="Sante"){
@@ -120,7 +119,9 @@ export class HomeComponent implements OnInit {
     }else{
       this.color="#074061e1" 
     }
-    // bg_rubrique?.background=this.color
+    bg_rubrique=this.color
+
+    return rubrique;
   }
 
   getAllBlog() {

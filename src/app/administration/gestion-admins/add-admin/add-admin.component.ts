@@ -1,3 +1,4 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,6 +13,7 @@ import { UserServiceService } from 'src/app/services/user_service/user-service.s
 })
 export class AddAdminComponent implements OnInit {
 
+  email:any
   nom:any
   prenom:any
   poste:any
@@ -38,6 +40,7 @@ export class AddAdminComponent implements OnInit {
     if(this.type_admin=="Super administrateur") {this.super_admin=true}
     else {this.super_admin=false}
 
+    this.email=form.value['email'];
     this.nom=form.value['nom'];
     this.prenom=form.value['prenom'];
     this.poste=form.value['poste'];
@@ -47,39 +50,45 @@ export class AddAdminComponent implements OnInit {
 
     this.msg=""
     
-    const admin={
+    const admin=[{
       "idAdmin":null,
-      "penom":this.prenom,
+      "prenom":this.prenom,
       "nom":this.nom,
       "poste":this.poste,
-      "email":null,
+      "email":this.email,
       "password":"JSTM@admin",
       "superAdmin":this.super_admin,
-      "imgPath":null,
+      "imgPath":"",
+      "active":true
 
-    }
+    }]
     
     try{ 
       this.admin_service.Register(admin,this.photo).subscribe(res=>{
-        this.reponse_admin=res
-        if(this.reponse_admin.message=="isertion effectue avec succes"){
-          this.spinner.hide();
-          const dialogclo = this.dialog.closeAll();
-          // this.user_service.isAuth=true;
+        if(res.type===HttpEventType.UploadProgress){
           
-          // this.user_service.utilisateur=this.response.body;
-          localStorage.setItem("all_admin", JSON.stringify(this.reponse_admin.data));
-          this.user_service.verifier()
-          
-          
-          
+        }else if(res instanceof HttpResponse){ 
+          this.reponse_admin=res.body
+          console.log(res.body)
+          if(this.reponse_admin.message=="isertion effectue avec succes"){
+            this.spinner.hide();
+            const dialogclo = this.dialog.closeAll();
+            // this.user_service.isAuth=true;
+            // this.admin_service.LesAdmins=this.reponse_admin.data;
+            this.admin_service.ajout=true
+            // localStorage.setItem("all_admin", JSON.stringify(this.reponse_admin.data));
+            // this.user_service.verifier()
 
-        }else if(this.reponse_admin.message =="Admin allready exist"){
-          this.msg="Cet adresse email existe déja";
-          this.spinner.hide();
-         }else if(this.reponse_admin.message != "isertion effectue avec succes" && this.reponse_admin.message !="User allready exist" ){
-          this.msg="Erreur d'acces au serveur"
-          this.spinner.hide();
+
+            
+
+          }else if(this.reponse_admin.message =="Admin allready exist"){
+            this.msg="Cet adresse email existe déja";
+            this.spinner.hide();
+          }else if(this.reponse_admin.message != "isertion effectue avec succes" && this.reponse_admin.message !="User allready exist" ){
+            this.msg="Erreur d'acces au serveur"
+            this.spinner.hide();
+          }
         }
       })
 

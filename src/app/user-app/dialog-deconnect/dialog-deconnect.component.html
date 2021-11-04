@@ -4,7 +4,7 @@
         <!--  [src]="user_service.utilisateur.imgPath" 
             {% comment %} [innerHTML]="blog.excerpt.rendered" {% endcomment %}
         mon_compte-->
-        <label id="user_name"> Ballo Ibrahima</label>
+        <label id="user_name">{{user_service.utilisateur.nomComplet}}</label>
     </div>
 
     <div class="dropdown-divider"></div>
@@ -14,5 +14,4 @@
     <div>
         <button id="bouton_deconnecter" class="btn btn-dark" (click)="deconnect()" style="margin:auto; width:100%;">Me Deconnecter</button>
     </div>
-
 </div>

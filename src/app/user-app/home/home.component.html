@@ -1,6 +1,8 @@
 <!--A la une-->
 <!--A la une-->
-<ngx-spinner [fullScreen]="true" type="ball-fall"></ngx-spinner>
+<ngx-spinner [fullScreen]="true" type="ball-fall" color="#d89503" bdColor="#fffffff7">
+    <p style="color: rgb(11, 78, 5); font-size: large; font-family: 'Courier New', Courier, monospace;">Chargement en cours...</p>
+</ngx-spinner>
 <div class="aLaUneDiv">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 
@@ -124,7 +126,7 @@
         <a class="card text-dark article_acceuil" style="margin-top: 25px;">
             <img src="{{ blog.jetpack_featured_media_url }}" height="200px" style="background-size: cover;" class="card-img-top" alt="photo_article">
             <div class="card-body">
-                <h3><label class="rubrique">{{articles[i].rubrique}}</label></h3>
+                <h3><label class="rubrique" style="text-transform: uppercase;" id={{articles[i].rubrique}}>{{giveCouleur(articles[i].rubrique)}}</label></h3>
                 <mat-card-title>
                     <p class="card-title">{{blog.title.rendered | slice:0:50 }}...</p>
                 </mat-card-title>

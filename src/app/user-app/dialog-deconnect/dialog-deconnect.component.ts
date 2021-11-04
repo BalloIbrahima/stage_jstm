@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserServiceService } from 'src/app/services/user_service/user-service.service';
-import {Router} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 
 @Component({
   selector: 'app-dialog-deconnect',
@@ -11,7 +11,7 @@ import {Router} from '@angular/router'
 export class DialogDeconnectComponent implements OnInit {
   icone_user:string=""
 
-  constructor(private router:Router,public dialog: MatDialog,public user_service: UserServiceService) { }
+  constructor(public router:Router,private active_route:ActivatedRoute,public dialog: MatDialog,public user_service: UserServiceService) { }
 
   ngOnInit(): void {
     if (this.user_service.utilisateur.imgPath==""){
@@ -25,6 +25,8 @@ export class DialogDeconnectComponent implements OnInit {
     const dialogclo = this.dialog.closeAll();
     this.user_service.my_compte_open=true;
     this.user_service.page_mon_compte=true;
+    // this.router.navigate(['mon_compte']);
+
   }
 
   deconnect(): void{
@@ -34,8 +36,21 @@ export class DialogDeconnectComponent implements OnInit {
     localStorage.removeItem("person");
     localStorage.clear();
 
+    this.router.navigate(['./../jstm'])
+    this.user_service.page_mon_compte=false
+    
     const dialogclo = this.dialog.closeAll();
 
   }
+
+  // if(this.user_service.my_compte_open==true){
+  //       this.router.navigate(['../jstm/mon_compte']);
+  //       console.log(this.router.getCurrentNavigation.name)
+  //     }else if(this.user_service.my_compte_open==false){
+  //       if(this.user_service.page_mon_compte==true){
+  //         this.router.navigate(['../jstm'])
+  //         this.user_service.page_mon_compte=false
+  //       }
+  //     }
 
 }

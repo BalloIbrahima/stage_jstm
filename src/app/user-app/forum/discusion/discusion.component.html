@@ -19,7 +19,7 @@
         <div class="liste_sujets">
             <div class="corps_discussion">
                 <!-- src={{auteur_message(chat.user)[photo]}} -->
-                <img *ngIf="chat.user.imgPath " id="connection_icon" class="rounded-circle" src="assets/img/mike.jpg" style="margin-right:2px ;height: 50px;width: 50px; left: 2px; margin-top: 2px;">
+                <img *ngIf="chat.user.imgPath " id="connection_icon" class="rounded-circle" src="{{chat.user.imgPath}}" style="margin-right:2px ;height: 50px;width: 50px; left: 2px; margin-top: 2px;">
                 <div *ngIf=" ! chat.user.imgPath " id="connection_icon" style="margin-right:2px ;height: 50px;width: 50px; left: 2px; margin-top: 2px;">
                     <div class="our-services settings">
                         <div class="icon">
@@ -31,7 +31,7 @@
                 <div class="details_discussion" style="margin-top: 8px; margin-left: 20px;">
                     <div style="margin-bottom: 0px;">
                         <label class="titre_discussion" style="font-size: medium; color: rgb(20, 20, 136); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; margin-bottom: 0px;">{{chat.user.nomComplet}}</label>
-                        <label style="right:0px; margin-left: 5%;">il ya 15 minutes</label>
+                        <label style="right:0px; margin-left: 5%;">{{il_ya(chat.date)}}</label>
                     </div>
                     <div class="div_message" style="margin-top: 2px; ">
                         <label class="message" style="font-size: small; font-family: Arial, Helvetica, sans-serif; box-shadow: 0px 0px 6px rgb(94, 93, 90); padding: 2px;" [innerHtml]="chat.text"></label>
@@ -47,7 +47,7 @@
         <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]=true (pageChange)="handlePageChange($event)" [maxSize]=maxS></pagination-controls>
     </div>
     <!-- espace d'envoi dun message sur le forum -->
-    <div class="div_poster_message Form" style="margin-left: 30%; margin-right: 5%;">
+    <div class="div_poster_message Form" style="margin-left: 30%; margin-right: 5%;" *ngIf="user_service.isAuth">
         <form (ngSubmit)="posterMessage(poste_message)" method="POST" #poste_message="ngForm">
             <textarea name="message" placeholder="Votre message...*" class="form-control my-2 p-3" ngModel required style="width: 100%; height: 100;"></textarea>
             <div style="width: 100%; display: flex;">

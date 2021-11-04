@@ -1,3 +1,4 @@
+<!-- <ngx-spinner [fullScreen]="true" type="ball-fall"></ngx-spinner> -->
 <div>
     <!-- Entete de la page -->
     <div class="entete">
@@ -51,11 +52,11 @@
                 </div>
                 <div class="details_sujet" style="margin-top: 6px; margin-left: 20px;">
                     <div>
-                        <label class="titre_sujet" style="font-size: medium; color: rgb(13, 13, 94); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-bottom: 0px;">
+                        <label class="titre_sujet">
                             {{ sujet.titre}}
                         </label>
                         <label *ngIf="nbr_table" class="d-minine btn-info " style="font-size: xx-small;margin-left: 10%; padding: 1px; background-color: rgb(65, 65, 160);">{{nbr_table[i]}} <mat-icon>chat</mat-icon></label>
-                        <label class="d-minine btn-success" style="font-size: xx-small; margin-left: 2px; right: 2px; padding: 2px; background-color: rgb(255, 255, 255); color: black;">13 <mat-icon>visibility</mat-icon></label>
+                        <label class="d-minine btn-success" style="font-size: xx-small; margin-left: 2px; right: 2px; padding: 2px; background-color: rgb(255, 255, 255); color: black;">{{nbr_vue[i]}} <mat-icon>visibility</mat-icon></label>
 
 
                     </div>
@@ -81,7 +82,7 @@
                         <label style="font-size: x-small; color: rgb(255, 255, 255); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><mat-icon>chat</mat-icon></label>
                     </div>
                     <div class="card card2" style="align-items: center; justify-content: center;">
-                        <label>13</label>
+                        <label>{{nbr_vue[i]}} </label>
                         <label style="font-size: x-small; color: rgb(0, 0, 0); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><mat-icon>visibility</mat-icon></label>
                     </div>
                 </div>

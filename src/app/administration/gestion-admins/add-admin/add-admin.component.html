@@ -6,6 +6,11 @@
     <div class="body">
         <div class="form-row">
             <div class="col-lg-7 ">
+                <input type="email" name="email" placeholder="Adresse mail" class="form-control my-2 p-3" ngModel required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-lg-7 ">
                 <input type="text" name="nom" placeholder="Nom" class="form-control my-2 p-3" ngModel required>
             </div>
         </div>
@@ -42,7 +47,7 @@
         </div>
 
         <div class="col-lg-6">
-            <button type="submit" class="btn btn-success mt-3 mb-3" [disabled]="add_admin.invalid">Modifier</button>
+            <button type="submit" class="btn btn-success mt-3 mb-3" [disabled]="add_admin.invalid">Ajouter</button>
         </div>
     </div>
 </form>

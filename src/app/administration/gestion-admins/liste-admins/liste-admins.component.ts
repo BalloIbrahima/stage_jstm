@@ -18,12 +18,13 @@ export class ListeAdminsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //recuperation de la liste des lecteurs
+    // recuperation de la liste des lecteurs
     this.admin.AllAdmin().subscribe(res=>{
       this.retour_admin=res;
-      this.Les_Admins=this.retour_admin.data;
-
+      // this.admin.LesAdmins=this.retour_admin;
+      this.Les_Admins=this.retour_admin;
     })
+
   }
 
   // change nom complet
@@ -34,7 +35,14 @@ export class ListeAdminsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // this.animal = result;
+      if(this.admin.ajout){
+        this.admin.AllAdmin().subscribe(res=>{
+          this.retour_admin=res;
+          // this.admin.LesAdmins=this.retour_admin;
+          this.Les_Admins=this.retour_admin;
+          this.admin.ajout=false
+        })
+      }
     });
   }
 

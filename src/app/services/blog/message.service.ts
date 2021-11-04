@@ -27,4 +27,12 @@ export class MessageService {
     return this.http.get(`${this.env.api}/nbreMessage/`+id)
   }
 
+  addVue(vue:any):Observable<any>{
+    return this.http.post(`${this.env.api}/vue`,vue)
+  }
+
+  nbreVue(id:any):Observable<any>{
+    return this.http.get(`${this.env.api}/vueMsg/`+id)
+  }
+
 }
