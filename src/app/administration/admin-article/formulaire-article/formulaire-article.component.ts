@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import {CKEditorComponent} from 'ng2-ckeditor'
-declare var CKEditor:any
+import { CKEditorComponent } from 'ng2-ckeditor';
 
 @Component({
   selector: 'app-formulaire-article',
@@ -14,17 +13,23 @@ export class FormulaireArticleComponent implements OnInit {
   img_article="";
   msg="Veuillez choisir une image pour l'article!" ;
   msg_vide=false;
+  // public Editor=ClassicEditor;
 
   titre: any;
   resume: any;
   rubrique: any;
   categorie: any;
   contenu:any;
-  // @ViewChild('ckeditor') ckeditor:CKEditorComponent
+  showFiles=false;
+  ckeditorContent: any;
+  name = 'Angular';
+  image_interne="";
+  photo:any=null;
+  @ViewChild('ckeditor') ckeditor:CKEditorComponent
   constructor() { }
 
   ngOnInit(): void {
-    // this.ckeditor.ckeditorInit
+    this.ckeditor.ckeditorInit
     
   }
   //quand on selectionne l'image principale de l'article
@@ -100,15 +105,55 @@ export class FormulaireArticleComponent implements OnInit {
     // })
   }
 
-  ckeditorContent: any;
-  name = 'Angular';
+  openImageExplorer($event: any) {
+   document.getElementById("img")?.click()
+
+  }
   
-  public model = {
-      name: 'Hardik',
-      description: '<p>This is a sample form using CKEditor 4.</p>'
-    };
+  tof_uphload(e:any){
+      //verification si une photo a été choisie ou pas
+      if(!e.target.files[0] || e.target.files[0].length==0){
+        return;
+      }
   
+      //verification du type de fichier choisi pour recaler si ce n'est pas une photo
+      var tof_type=e.target.files[0].type;
+      if(tof_type.match(/image\/*/)==null){
+        return;
+      }
+  
+  
+  
+      if(e.target.files){
+        var reader= new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload=(event:any)=>{
+          this.image_interne=event.target.result;
+          this.photo=e.target['files'][0];  
+
+          try
+          {
+            let link = this.ckeditor.instance.document.createElement("img");
+            link.setAttribute("alt", "Image");
+            // link.setAttribute("class","img-fluid")
+            link.setAttribute("src",event.target.result);
+
+            this.ckeditor.instance.insertElement(link);
+          }
+          catch(error)
+          {
+            console.log((<Error>error).message);
+          }   
+        }
+
+        
+      }
+
+    
+
+  }
+ 
   onSubmit() {
-      console.log( `Form submit, model: ${ JSON.stringify( this.model ) }` );
+      // console.log( `Form submit, model: ${ JSON.stringify( this.model ) }` );
   }
 }

@@ -28,7 +28,6 @@ import { MesArticlesComponent } from './admin-article/mes-articles/mes-articles.
 import { FormulaireArticleComponent } from './admin-article/formulaire-article/formulaire-article.component';
 import { JstmTvService } from '../services/jstm_tv/jstm-tv.service';
 import { ArticleService } from '../services/article/article.service';
-import { CKEditorModule,CKEditorComponent } from 'ng2-ckeditor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { AdminMagasineComponent } from './admin-magasine/admin-magasine.component';
@@ -45,6 +44,9 @@ import { ModifierPasswordComponent } from './admin-moncompte/modifier-password/m
 import { AllArticlesComponent } from './admin-article/all-articles/all-articles.component';
 import { AllMagazinesComponent } from './admin-magasine/all-magazines/all-magazines.component';
 import { AddAdminComponent } from './gestion-admins/add-admin/add-admin.component';
+import { CKEditorModule } from 'ng2-ckeditor';
+import { DialogFileComponent } from './admin-article/formulaire-article/dialog-file/dialog-file.component';
+// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -69,13 +71,13 @@ import { AddAdminComponent } from './gestion-admins/add-admin/add-admin.componen
     AllArticlesComponent,
     AllMagazinesComponent,
     AddAdminComponent,
+    DialogFileComponent,
  
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AdministrationRoutingModule,
-
     BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,
@@ -89,8 +91,6 @@ import { AddAdminComponent } from './gestion-admins/add-admin/add-admin.componen
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    // PdfViewerModule,
-    // YouTubePlayerModule,
     NgxSpinnerModule,
     CKEditorModule,
     NgbModule,
@@ -123,6 +123,6 @@ import { AddAdminComponent } from './gestion-admins/add-admin/add-admin.componen
    
   ],
   providers: [JstmTvService,ArticleService,UserServiceService],
-  bootstrap: [AdministrationComponent]
+  bootstrap: [AdministrationComponent],
 })
 export class AdministrationModule { }

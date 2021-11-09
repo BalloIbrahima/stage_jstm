@@ -87,15 +87,16 @@ export class HomeComponent implements OnInit {
     // },3000)
     this.getAllBlog();
 
-    this.articles.forEach(article=>{
-      this.giveCouleur(article.rubrique)
-    })
+    // this.articles.forEach(article=>{
+    //   this.giveCouleur(article.rubrique)
+    // })
   }
 
   // couleur du bg dele rubrique
 
   giveCouleur(rubrique:any){
-    var bg_rubrique=document.getElementById(rubrique)?.style.backgroundColor;
+    var bg_rubrique=document.getElementById(rubrique)?.style.background;
+    
     if(rubrique=="Agriculture"){
       this.color="#034d07" 
     }else if(rubrique=="Sante"){
@@ -120,8 +121,8 @@ export class HomeComponent implements OnInit {
       this.color="#074061e1" 
     }
     bg_rubrique=this.color
-
-    return rubrique;
+    // console.log(bg_rubrique)
+    return bg_rubrique;
   }
 
   getAllBlog() {

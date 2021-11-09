@@ -1,10 +1,10 @@
- <div style="margin-left: 0.5%; margin-right: 0.5%; ">
+<div style="margin-left: 0.5%; margin-right: 0.5%; ">
     <form (ngSubmit)="creer_article(article)" method="POST" #article="ngForm">
-        <input type="text" name="titre" placeholder="Le titre de l'article ici...*" class="form-control my-2 p-3 text-light" ngModel  required style="height: 50px; width: 100%; background-color: #131D28;">
+        <input type="text" name="titre" placeholder="Le titre de l'article ici...*" class="form-control my-2 p-3 text-light" ngModel required style="height: 50px; width: 100%; background-color: #131D28;">
         <div style="display: flex; width: 100%; margin-bottom: 2px;">
             <!-- choix de la rubrique -->
-            <div  style="margin-right: 2%;">
-                <label class="my-1 mr-2 nav-link"  >
+            <div style="margin-right: 2%;">
+                <label class="my-1 mr-2 nav-link">
                     <span class="text-light" id="selected">Rubrique de l'article</span>
                 </label>
                 <select class="custom-select my-1 mr-sm-2 text-light" style="background-color: #131D28;" id="rubrique">
@@ -18,8 +18,8 @@
             </div>
             <!-- choix du niveau  -->
 
-            <div  style="margin-left: 2%;">
-                <label class="my-1 mr-2 nav-link" hreh="#"  >
+            <div style="margin-left: 2%;">
+                <label class="my-1 mr-2 nav-link" hreh="#">
                     <span class="text-light" id="selected">La categorie </span>
                 </label>
                 <select class="custom-select my-1 mr-sm-2 text-light" style="background-color: #131D28;" id="categorie">
@@ -29,8 +29,8 @@
                 </select>
             </div>
             <!-- choix de la photo principal de l'article -->
-            <div  style="margin-left: 2%;">
-                <label class="my-1 mr-2 nav-link" hreh="#"  >
+            <div style="margin-left: 2%;">
+                <label class="my-1 mr-2 nav-link" hreh="#">
                     <span class="text-light" id="selected">Image principal de l'article</span>
                 </label>
                 <input type="file" class="custom-select my-1 mr-sm-2 text-light" style="justify-content: center; align-items: center; background-color: #131D28;" (change)="onSelectFile($event)">
@@ -38,20 +38,21 @@
             <!--affichage de la photo principal -->
             <div style="margin-left: 2%;">
                 <div class="form-row d-center" *ngIf="msg_vide">
-                    <img   class="my-1 mr-2" src={{img_article}} alt="Image de l'article" ngModel required style="height:90px" >
+                    <img class="my-1 mr-2" src={{img_article}} alt="Image de l'article" ngModel required style="height:90px">
                 </div>
                 <div *ngIf="!msg_vide" [innerHtml]='msg' class="my-1 mr-sm-2 text-danger" style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
-                    
+
             </div>
         </div>
         <textarea type="text" name="resume" placeholder="Un resumé de l'article..." class="form-control my-2 p-3 text-light" ngModel style="justify-content: center; align-items: center; background-color: #131D28;"></textarea>
 
-        <ckeditor [(ngModel)]="ckeditorContent" required name="contenu_article"
-            #ckeditor
-            style="background-color: #131D28;">  
+        <ckeditor [(ngModel)]="ckeditorContent" required name="contenu_article" #ckeditor style="background-color: #131D28;">
+            <ckbutton [name]="'imageExplorer'" [command]="'openImageExplorer'" [icon]="'plugins/icons.png'" (click)="openImageExplorer($event)" [label]="'Open image explorer'" [toolbar]="'insert,1'">
+            </ckbutton>
         </ckeditor>
-        <button [disabled]="article.invalid" class="btn btn-outline-warning" style="width: auto; right:0px; margin-left: auto; margin-top: 4px; display: flex; margin-bottom:5px"  >Créer l'article</button>
-   
+
+        <input type="file" class="d-none" id="img" accept="image/*" (change)="tof_uphload($event)">
+        <button [disabled]="article.invalid" class="btn btn-outline-warning" style="width: auto; right:0px; margin-left: auto; margin-top: 4px; display: flex; margin-bottom:5px">Créer l'article</button>
+
     </form>
-</div>   
-    
+</div>
