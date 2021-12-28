@@ -19,6 +19,7 @@ import { ListeAdminsComponent } from './gestion-admins/liste-admins/liste-admins
 import { AllCommentairesComponent } from './Commentaire/all-commentaires/all-commentaires.component';
 import { AllMagazinesComponent } from './admin-magasine/all-magazines/all-magazines.component';
 import { AllArticlesComponent } from './admin-article/all-articles/all-articles.component';
+import { StatistiqueComponent } from './statistique/statistique.component';
 // import { SuperadminLoginComponent } from './superadmin-login/superadmin-login.component';
 
 export const routes: Routes = [
@@ -30,6 +31,10 @@ export const routes: Routes = [
         path:'home',
         component:AdminHomeComponent,
         children:[
+          {
+            path:'',
+            component:StatistiqueComponent,
+          },
           {
             path:'commentaires',
             component:AllCommentairesComponent,

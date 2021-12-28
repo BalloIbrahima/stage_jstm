@@ -46,6 +46,7 @@ import { AllMagazinesComponent } from './admin-magasine/all-magazines/all-magazi
 import { AddAdminComponent } from './gestion-admins/add-admin/add-admin.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { DialogFileComponent } from './admin-article/formulaire-article/dialog-file/dialog-file.component';
+import { StatistiqueComponent } from './statistique/statistique.component';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
@@ -72,6 +73,7 @@ import { DialogFileComponent } from './admin-article/formulaire-article/dialog-f
     AllMagazinesComponent,
     AddAdminComponent,
     DialogFileComponent,
+    StatistiqueComponent,
  
   ],
   imports: [
