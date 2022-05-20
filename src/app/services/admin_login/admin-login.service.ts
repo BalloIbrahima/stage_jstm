@@ -19,7 +19,7 @@ export class AdminLoginService {
    
     this.admin = JSON.parse(localStorage.getItem("admin") || '');
     if(this.admin==''){
-      this.isAuth=true;
+      this.isAuth=false;
     }else{
       this.isAuth=true;
       console.log('okk')
@@ -58,10 +58,6 @@ export class AdminLoginService {
     return this.http.request(new_request)
 
   }
-
-  // modification mots de passe admin
-  Password_review(admin:any):Observable<any>{
-    return this.http.post(`${this.env.api}/admin`,admin);
-  }
+ 
 
 }

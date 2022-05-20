@@ -57,7 +57,6 @@ const user_routes: Routes = [
           {path:'technologie', component:TechnologieNationaleComponent},
           {path:'education', component:EducationNationaleComponent},
           {path:'societe', component:SocieteNationaleComponent}
-
         ]
       },
       //actu science internationale

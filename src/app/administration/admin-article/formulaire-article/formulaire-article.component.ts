@@ -1,6 +1,10 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CKEditorComponent } from 'ng2-ckeditor';
+import { AdminLoginService } from 'src/app/services/admin_login/admin-login.service';
+import { ArticleService } from 'src/app/services/article/article.service';
 
 @Component({
   selector: 'app-formulaire-article',
@@ -13,23 +17,29 @@ export class FormulaireArticleComponent implements OnInit {
   img_article="";
   msg="Veuillez choisir une image pour l'article!" ;
   msg_vide=false;
+  article_exist=false;
   // public Editor=ClassicEditor;
 
   titre: any;
   resume: any;
   rubrique: any;
   categorie: any;
+  credit_photo:any;
   contenu:any;
   showFiles=false;
   ckeditorContent: any;
   name = 'Angular';
   image_interne="";
   photo:any=null;
+  img_principal:any;
+  response_article:any;
   @ViewChild('ckeditor') ckeditor:CKEditorComponent
-  constructor() { }
+  constructor(private adminService:AdminLoginService,private articleService:ArticleService,private active_route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
     this.ckeditor.ckeditorInit
+
+    
     
   }
   //quand on selectionne l'image principale de l'article
@@ -59,12 +69,14 @@ export class FormulaireArticleComponent implements OnInit {
       reader.onload=(event:any)=>{
         this.msg="";
         this.msg_vide=true;
+        this.img_principal=e.target['files'][0];
         this.img_article=event.target.result;
       }
     }
   }
   //creation de l'article
   creer_article(form:NgForm){
+    this.article_exist=false;
     //recuperation des valeur des balises select
     var select_cat=document.getElementById("categorie")  as HTMLSelectElement;
     var select_rub=document.getElementById("rubrique") as HTMLSelectElement;
@@ -76,21 +88,59 @@ export class FormulaireArticleComponent implements OnInit {
     // 
     this.titre=form.value['titre'];
     this.resume=form.value['resume'];
-    sujet:[
+    this.credit_photo=form.value['credit_photo'];
+
+    
+    const article=[
       {
-        
+        "idArticle":null,
         "titre":this.titre,
         "resume":this.resume,
-        "rubrique":this.rubrique,
+        "contenue":this.ckeditorContent,
         "categorie":this.categorie,
+        "rubrique":this.rubrique,
+        "date":"",
+        "creditPhoto":this.credit_photo,
+        "imagePath":"",
+        "admin":this.adminService.admin
       }
 
       
     ];
 
-    console.log(this.categorie,this.rubrique);
+    // console.log(article);
 
 
+    this.articleService.CreateArticle(article,this.img_principal).subscribe(res=>{
+
+      if(res.type===HttpEventType.UploadProgress){
+          
+      }else if(res instanceof HttpResponse){
+        this.response_article = res.body;
+
+        if(this.response_article.message=="succes"){
+          console.log(this.response_article.message)
+          form.resetForm();
+          this.ckeditorContent=" ";
+          this.img_article="";
+          this.img_principal=null;
+          this.router.navigate(['../'],{relativeTo:this.active_route})
+
+        }else if(this.response_article.message=="article allready exist"){
+
+          console.log(this.response_article.message)
+          this.article_exist=true;
+
+
+        }else{
+          console.log(this.response_article.message,"erreur inconnue")
+
+        }
+      
+      
+      }
+
+    })
     // this.user_service.Login({"email":this.mail,"password":this.password}).subscribe(res=>{
     //   this.reponse=res;
     //   if(this.reponse.message=="valid"){

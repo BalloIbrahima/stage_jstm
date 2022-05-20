@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AdminLoginService } from '../services/admin_login/admin-login.service';
 
 @Component({
   selector: 'app-administration',
@@ -7,14 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministrationComponent implements OnInit {
   ischeicked=false;
-  constructor() { 
+  constructor( public adminService:AdminLoginService, private router:Router) { 
 
     // window.addEventListener("wi")
 
   }
 
   ngOnInit(): void {
+
+    if(!this.adminService.isAuth){
+      this.router.navigate(['jstm_admin'])
+      //relativeTo:this.active_route
+
+    }
   }
+
 
   check(){
     this.ischeicked=!this.ischeicked
@@ -81,6 +90,13 @@ export class AdministrationComponent implements OnInit {
    
       //   }
       // })
+  }
+
+  logout(){
+    location.reload();
+    localStorage.clear();
+    this.adminService.admin=null
+
   }
 
 }

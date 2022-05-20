@@ -17,7 +17,7 @@ export class AdminMoncompteComponent implements OnInit {
   invalid:boolean;
   aucune_modif:boolean;
   acces_server:boolean;
-  constructor(public router:Router,public dialog: MatDialog,private spinner : NgxSpinnerService,private admin_service:AdminLoginService) { }
+  constructor(public router:Router,public dialog: MatDialog,private spinner : NgxSpinnerService,public admin_service:AdminLoginService) { }
 
   ngOnInit(): void {
     this.spinner.hide()
@@ -31,7 +31,7 @@ export class AdminMoncompteComponent implements OnInit {
   email:any;
   mot_de_passe:any;
   super_admin:boolean;
-  image_admin:any;
+  image_admin:any=null;
   image_admin_new:any;
   reponse_admin:any;
 
@@ -68,73 +68,26 @@ export class AdminMoncompteComponent implements OnInit {
 
 
 
-  onSubmit(form:NgForm){
+  onSubmit(){
 
     this.acces_server=false;
     this.aucune_modif=false;
     
-    this.prenom=form.value['prenom']
-    this.nom=form.value['nom']
-    this.email=form.value['email']
-    this.dateNaissance=form.value['dateNaissance']
+    if(this.image_admin!=null){
+      this.admin_service.Modifier_admin(this.admin_service.admin.admin,this.image_admin).subscribe(res=>{
+        if(res.type===HttpEventType.UploadProgress){
+        
+        }else if(res instanceof HttpResponse){
+          this.reponse_admin=res;
+          if(this.reponse_admin.message="succes"){
+           location.reload();
 
-    const admin=[{
-      'prenom':this.prenom,
-      'nom':this.nom,
-      'dateNaissance':"",
-      'poste':this.poste,
-      'email':this.email,
-      'password':this.admin_service.admin.mot_de_passe,
-      'IsSuperAdmin':false,
-      'photo':""
-
-  }]
-    if(this.prenom=="" && this.nom=="" && this.dateNaissance==this.admin_service.admin.dateNaissance && this.email=="" && this.icone_user==this.admin_service.admin.photo){
-      this.aucune_modif=true
-    }else{
-      if(this.icone_user==this.admin_service.admin.photo){
-          // determination s'il est super Admin ou pas
-      // this.super_admin=form.value[]
-        this.admin_service.Modifier_admin(admin,this.image_admin_new).subscribe(res=>{
-          if(res.type===HttpEventType.UploadProgress){
-          
-          }else if(res instanceof HttpResponse){
-            this.reponse_admin=res;
-            if(this.reponse_admin.message="valid"){
-              this.admin_service.admin=this.reponse_admin.data
-              // alert("Compte moodifier avec succes !")
-              this.router.navigate(['../home'])
-
-  
-            }else{
-              this.acces_server=true
-            }
+          }else{
           }
-        })
-      }else{
-        // this.super_admin=form.value[]
-        this.admin_service.Modifier_admin(admin,this.image_admin
-          ).subscribe(res=>{
-            if(res.type===HttpEventType.UploadProgress){
-            
-            }else if(res instanceof HttpResponse){
-              this.reponse_admin=res;
-              if(this.reponse_admin.message="valid"){
-                this.admin_service.admin=this.reponse_admin.data
-                // alert("Compte créer avec succes !")
-                this.router.navigate(['../home'])
-    
-              }else{
-                this.acces_server=true
-              }
-            }
-        })
-      }
-
+        }
+      })
     }
-
-  
-
+    
   }
     
     
@@ -150,6 +103,8 @@ export class AdminMoncompteComponent implements OnInit {
       // this.animal = result;
     });
   }
+
+  
 
 
 }

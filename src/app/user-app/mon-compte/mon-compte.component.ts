@@ -35,7 +35,7 @@ export class MonCompteComponent implements OnInit, OnDestroy{
         }
       )
     }catch{
-      this.router.navigate(['./../home'],{relativeTo:this.active_route})
+      this.router.navigate(['../'],{relativeTo:this.active_route})
 
         
     }

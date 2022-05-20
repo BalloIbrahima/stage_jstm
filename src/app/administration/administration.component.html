@@ -3,10 +3,12 @@
     <div class="sidebar-menu">
 
         <div class="side-user">
-            <div class="side-img" style="background-image: url(assets/img/mike.jpg)"></div>
+            <div *ngIf="adminService.admin.imgPath==''" class="side-img" style="background-image: url(assets/img/avatar.svg)"></div>
+            <div *ngIf="adminService.admin.imgPath!=''" class="side-img" style="background-image: url(adminService.admin.imgPath)"></div>
+
             <div class="user">
-                <small>mike sierrre</small>
-                <p>software developper</p>
+                <small>{{adminService.admin.nom}} {{adminService.admin.prenom}}</small>
+                <p>{{adminService.admin.poste}}</p>
             </div>
         </div>
 
@@ -41,7 +43,7 @@
             </li>
             <!-- <div class="dropdown-divider"></div> -->
 
-            <li class="nav-item">
+            <li *ngIf="adminService.admin.superAdmin" class="nav-item">
                 <!-- <a href="">
                     <span></span>
                     <span>Publicité</span>
@@ -66,7 +68,7 @@
             </li>
             <!-- <div class="dropdown-divider"></div> -->
 
-            <li class="nav-item">
+            <li *ngIf="adminService.admin.superAdmin" class="nav-item">
                 <!-- <a href="">
                     <span class="ti ti-settings"></span>
                     <span>Gestions Des Admins</span>
@@ -79,7 +81,7 @@
 
             </li>
 
-            <li class="nav-item">
+            <li *ngIf="adminService.admin.superAdmin" class="nav-item">
                 <!-- <a href="">
                     <span class="ti ti-settings"></span>
                     <span>Gestions Des Admins</span>
@@ -118,15 +120,15 @@
             <!-- <span class="ti ti-menu-alt"></span> -->
         </div>
         <div>
-            <button mat-icon-button class="icon">
+            <!-- <button mat-icon-button class="icon">
                     <mat-icon>person</mat-icon>
                     
-                </button>
+                </button> -->
             <!-- <button mat-icon-button class="menu-toogle">
                     <mat-icon></mat-icon>
                 </button> -->
-            <button mat-icon-button class="icon">
-                    <mat-icon>sms</mat-icon>
+            <button mat-icon-button class="icon" (click)="logout()">
+                    <mat-icon>log-out</mat-icon>
                 </button>
         </div>
 

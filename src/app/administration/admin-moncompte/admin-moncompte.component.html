@@ -18,7 +18,7 @@
                 </div>
                 <div class="col px-2 pt-5">
                     <h1>Modifier Mon Compte</h1>
-                    <form (ngSubmit)="onSubmit(modifier_compte)" #modifier_compte="ngForm">
+                    <div >
                         <div class="form-row d_tof_mini">
                             <div class="col-lg-7">
                                 <div  style="margin-left: 2%;">
@@ -39,27 +39,22 @@
                         </div>
                         <div class="form-row">
                             <div class="col-lg-7 ">
-                                <input  type="text" name="prenom" placeholder="Prenom:Ibrahima" class="form-control my-2 p-3" ngModel >
+                                <label class="form-control my-2 p-3" ngModel>Nom: {{admin_service.admin.nom}}</label>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-lg-7 ">
-                                <input  type="text" name="nom" placeholder="Nom:Ballo" class="form-control my-2 p-3" ngModel>
+                                <label   class="form-control my-2 p-3" ngModel>Prenom: {{admin_service.admin.prenom}}</label>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-lg-7 ">
-                                <input  type="email" name="mail" placeholder="Email:mail_adresse@gmail.com*" class="form-control my-2 p-3" ngModel>
-                            </div>
-                        </div>
-                        <div class="form-row">
+                        <!-- <div class="form-row">
                             <div class="col-lg-7 ">
                                 <input  type="date" name="dateNaissance" class="form-control my-2 p-3" ngModel>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-row">
                             <div class="col-lg-7  border-2">
-                                <label  class="my-2 p-3" ngModel>Poste:Directeur</label>
+                                <label  class="form-control my-2 p-3" ngModel>Poste: {{admin_service.admin.poste}}</label>
                             </div>
                         </div>
                         
@@ -75,17 +70,13 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <div class="form-row" >
                             <div class="col-lg-8">
-                                <button type="submit" class="btn1 mt-3 mb-3" [disabled]="modifier_compte.invalid">Modifier Mes infos</button>
+                                <button type="submit" (click)="onSubmit()"  class="btn1 mt-3 mb-3" [disabled]="image_admin==null">Modifier Ma Photo</button>
                             </div>
                         </div>
 
-                        <div class="form-row" (click)="modifier_password()" >
-                            <div class="col-lg-7">
-                                <button class="mt-2 mb-1 form-control btn-outline-danger" ngModel>Ou Modifier Mon Mots de passe</button>
-                            </div>
-                        </div>
+                        
                         <!--<p (click)="openConnexionDialog()">Vous avez un compte ? 
                             <a class="mbrs-icon">
                                 <div class="btn_proposition" >
@@ -93,7 +84,12 @@
                                 </div>
                             </a>
                         </p>-->
-                    </form>
+                    </div>
+                    <div class="form-row" (click)="modifier_password()" >
+                            <div class="col-lg-7">
+                                <button class="mt-2 mb-1 form-control btn-outline-danger" >Ou Modifier Mon Mots de passe</button>
+                            </div>
+                        </div>
                 </div>
 
                <!-- <div class="col-lg-2  img_user" type="button">

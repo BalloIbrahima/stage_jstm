@@ -1,7 +1,7 @@
  <div style="margin-left: 0.5%; margin-right: 0.5%; ">
     <form (ngSubmit)="creer_magazine(magazine)" method="POST" #magazine="ngForm">
         <input type="text" name="titre" placeholder="Le titre du magazine ici...*" class="form-control my-2 p-3 text-light" ngModel  required style="height: 50px; width: 100%; background-color: #131D28;">
-        <input type="text" name="prix" placeholder="Le prix du magazine ici..(Laisser vide si le Magazine est gratuit)" class="form-control my-2 p-3 text-light" ngModel style="height: 50px; width: auto%; background-color: #131D28;">
+        <input type="text" name="prix" placeholder="Le prix du magazine ici..(Laisser vide si le Magazine est gratuit)" class="form-control my-2 p-3 text-light" ngModel style="height: 50px; width: 100%; background-color: #131D28;">
 
         <div style="display: flex; width: 100%; margin-bottom: 2px;">
         
@@ -24,7 +24,7 @@
                 <label class="my-1 mr-2 nav-link" hreh="#"  >
                     <span class="text-light" id="selected">Choisir le magazine</span>
                 </label>
-                <input type="file" class="custom-select my-1 mr-sm-2 text-light" style="justify-content: center; align-items: center; background-color: #131D28;" (change)="onGetPdf($event,file_mag)">
+                <input type="file" class="custom-select my-1 mr-sm-2 text-light" style="justify-content: center; align-items: center; background-color: #131D28;" (change)="onSelectmag($event)">
             </div>
              <div style="margin-left: 2%;">
                 <div *ngIf="!msg_vide_mag" [innerHtml]='msg_mag' class="my-1 mr-sm-2 text-danger" style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>     

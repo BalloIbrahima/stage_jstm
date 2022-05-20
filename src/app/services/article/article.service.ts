@@ -1,6 +1,6 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -37,5 +37,17 @@ export class ArticleService {
   // gestion de telechargement du pdf
   downloadPdf(url:string){
     return this.httpClient.get(url,{headers : new HttpHeaders().set('accept','application/pdf'), responseType: 'blob'});
+  }
+
+  CreateArticle(article:any,photo:File):Observable<any>{
+
+    const data:FormData=new FormData();
+
+    data.append('file', photo);
+
+    data.append('article', JSON.stringify(article).slice(1,JSON.stringify(article).lastIndexOf(']')));
+    const new_request=new HttpRequest('POST',`${this.env.api}/article/add`, data,{reportProgress:true});
+    return this.httpClient.request(new_request)
+  
   }
 }

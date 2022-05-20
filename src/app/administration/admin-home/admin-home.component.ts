@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { AdminLoginService } from 'src/app/services/admin_login/admin-login.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor( private adminService:AdminLoginService, private router:Router) { }
 
   ngOnInit(): void {
+
+    // if(!this.adminService.isAuth){
+    //   this.router.navigate(['jstm_admin'])
+    //   //relativeTo:this.active_route
+    //   console.log("execuerr")
+
+    // }
   }
 
 }

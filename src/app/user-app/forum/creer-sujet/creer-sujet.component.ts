@@ -32,7 +32,8 @@ export class CreerSujetComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.user_service.isAuth==false){
-      this.router.navigate(['./../jstm'])
+      this.router.navigate(['../'],{relativeTo:this.active_route})
+
     }
   }
 

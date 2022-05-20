@@ -2,6 +2,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminLoginService } from 'src/app/services/admin_login/admin-login.service';
 import { UserServiceService } from 'src/app/services/user_service/user-service.service';
@@ -24,9 +25,15 @@ export class AddAdminComponent implements OnInit {
   super_admin:boolean
   reponse_admin:any
 
-  constructor(public dialog: MatDialog, private user_service:UserServiceService,private admin_service:AdminLoginService, private spinner : NgxSpinnerService) { }
+  constructor(private active_route:ActivatedRoute,private router:Router,public dialog: MatDialog, private user_service:UserServiceService,private admin_service:AdminLoginService, private spinner : NgxSpinnerService) { }
 
   ngOnInit(): void {
+
+
+    if(!this.admin_service.admin.superAdmin){
+      this.router.navigate(['../'],{relativeTo:this.active_route})
+
+    }
   }
 
 

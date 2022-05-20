@@ -19,7 +19,8 @@
                     <td>{{admin.prenom}}</td>
                     <td>{{admin.poste}}</td>
                     <td>{{admin.email}}</td>
-                    <td>12</td>
+                    <td *ngIf="admin.superAdmin">Super Admin</td>
+                    <td *ngIf="!admin.superAdmin">Admin</td>
                     <td></td>
                     <td></td>
 

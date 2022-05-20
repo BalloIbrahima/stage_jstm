@@ -7,11 +7,7 @@ const routes: Routes = [
 
 
 
-  { 
-    path: 'jstm_admin',  
-    component:AdminAuthentificationComponent,
-    pathMatch:'full'
-  }
+
   
 ];
 

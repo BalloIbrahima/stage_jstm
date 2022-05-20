@@ -9,10 +9,10 @@ const routes: Routes = [
     path:'not_found',
     component:NotFoundComponent,
   },
-  //  {
-  //   path:'admin',
-  //   component:AdministrationComponent
-  // },      
+   {
+    path:'admin',
+    component:AdministrationComponent
+  },      
    {
     path:'', 
     redirectTo:'jstm',

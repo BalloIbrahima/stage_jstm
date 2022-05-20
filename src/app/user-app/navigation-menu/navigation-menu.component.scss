@@ -1,10 +1,4 @@
-// @font-face {
-//     font-family: "rajdhanibold";
-//     src: url('~@/assets/font/rajdhani_bold/rajdhani-bold-webfont.woff2') format('woff2'),
-//          url('~@/assets/font/rajdhani_bold/rajdhani-bold-webfont.woff') format('woff');
-//     font-weight: normal;
-//     font-style: normal;
-// }
+
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&family=Roboto:wght@500&display=swap');
 p:hover {
@@ -260,18 +254,14 @@ p:hover {
 
 .navbar-nav .nav-link.active {
     background: rgba(235, 135, 5, 0.9) !important;
-    // color: rgba(235, 135, 5, 0.9) !important;
 }
 
 li {
     font-size: 18px;
     font-style: bold !important;
-    // font-family: "Open Sans WebFont","Helvetica Neue",Helvetica,sans-serif;
 }
 
-// #menu_btn{
-//     font-family: 'Rajdhani', sans-serif;
-// }
+
 .d-lg-none {
     display: block!important;
 }
@@ -353,49 +343,3 @@ li {
 }
 
 
-/*pendant le scrollage  88888nest pas utilise d'abord
-
-.nav_scrolled{
-
-    .titre{
-        background-color: #f7ecec;
-        height:max-content;
-        width: auto;
-        display: grid;
-        grid-template-rows: 100%;
-        grid-gap: 5px;
-        box-shadow: 0px 0px 6px rgb(128, 9, 5);
-        height: 20px;
-
-        
-        justify-content: center;
-        align-items: center;
-      
-        padding: 5% auto;
-    
-    }
-    la partie 1, la première ligne du menu icone,dernier article etc ...
-    
-    .first_header{
-        display: none;
-    }
-
-    .last_header{
-        box-shadow: 0px 0px 6px rgb(16, 0, 59);
-        margin-bottom: auto;
-    }
-
-    .icone_site_scroll{
-        left: 25px;
-        top: 5px;
-
-        height: 10px;
-        width: auto;
-    }
-    
-    
-
-}
-
-
-*/

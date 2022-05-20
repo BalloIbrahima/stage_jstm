@@ -1,6 +1,10 @@
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdminLoginService } from 'src/app/services/admin_login/admin-login.service';
 import { ArticleService } from 'src/app/services/article/article.service';
+import { MagazineService } from 'src/app/services/magazine/magazine.service';
 
 @Component({
   selector: 'app-formulaire-magasine',
@@ -14,15 +18,17 @@ export class FormulaireMagasineComponent implements OnInit {
   msg_mag="Veuillez choisir le fichier du magazine"
   msg_vide=false;
   msg_vide_mag=false;
-
+  response_magazine:any;
+  pdf_magazine:any;
   titre: any;
-  resume: any;
-  rubrique: any;
-  categorie: any;
+  prix: any;
+ 
   contenu:any;
+  mag_exist=false;
+  img_mag:any;
 
   file_mag="";
-  constructor(  private apiServicem : ArticleService) { }
+  constructor(private articleService:ArticleService,private adminService:AdminLoginService,private magazineService:MagazineService,private active_route:ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -31,34 +37,53 @@ export class FormulaireMagasineComponent implements OnInit {
   //creation de l'article
   creer_magazine(form:NgForm){
 
+    this.mag_exist=false;
     this.titre=form.value['titre'];
-    this.resume=form.value['resume'];
-    sujet:[
+    this.prix=form.value['prix'];
+    const magasine=[
       {
-        
+        "idMagazine":null,
         "titre":this.titre,
-        "resume":this.resume,
-        
+        "imagePath":"",
+        "pdfPath":"",
+        "prix":this.prix,
+        "date":"",
+        "admin":this.adminService.admin
       }
-
-      
     ];
 
-    console.log(this.categorie,this.rubrique);
 
 
-    // this.user_service.Login({"email":this.mail,"password":this.password}).subscribe(res=>{
-    //   this.reponse=res;
-    //   if(this.reponse.message=="valid"){
-    //     this.user_service.isAuth=true;
-    //     this.user_service.utilisateur=this.reponse.data;
-    //     const dialogclo = this.dialog.closeAll();
-    //     this.invalid=false;
-    //   }else{
-    //     this.invalid=true;
 
-    //   }
-    // })
+    this.magazineService.CreateMagazine(magasine,this.img_mag, this.pdf_magazine).subscribe(res=>{
+      console.log(magasine);
+
+      if(res.type===HttpEventType.UploadProgress){
+          
+      }else if(res instanceof HttpResponse){
+        this.response_magazine = res.body;
+
+        if(this.response_magazine.message=="succes"){
+          console.log(this.response_magazine.message)
+          form.resetForm();
+          this.img_article="";
+          this.pdf_magazine=null;
+          this.router.navigate(['../'],{relativeTo:this.active_route})
+
+        }else if(this.response_magazine.message=="magazine allready exist"){
+
+          console.log(this.response_magazine.message)
+          this.mag_exist=true;
+
+
+        }else{
+          console.log(this.response_magazine.message,"erreur inconnue")
+
+        }
+      
+      
+      }
+    })
   }
 
   //choix de la photo du magazine
@@ -89,6 +114,8 @@ export class FormulaireMagasineComponent implements OnInit {
         this.msg="";
         this.msg_vide=true;
         this.img_article=event.target.result;
+        this.img_mag=e.target['files'][0];
+
       }
     }
   }
@@ -120,6 +147,9 @@ export class FormulaireMagasineComponent implements OnInit {
         this.msg_mag="";
         this.msg_vide_mag=true;
         this.file_mag=event.target.result;
+        this.pdf_magazine=e.target['files'][0];
+        console.log(e.target['files'][0])
+
       }
     }
   }
@@ -140,55 +170,7 @@ export class FormulaireMagasineComponent implements OnInit {
   allpage : number = 0 ;
   isLoaded : boolean | undefined;
 
-  onGetPdf(e:any,link : any) {
-    // 
-      //verification si une photo a été choisie ou pas
-    if(!e.target.files[0] || e.target.files[0].length==0){
-      this.msg_mag="Vous devez choisir le fichier du magazine!";
-      this.msg_vide_mag=false;
-      return;
-    }
-
-    //verification du type de fichier choisi pour recaler si ce n'est pas un pdf
-    var tof_type=e.target.files[0].type;
-    if(tof_type.match(/pdf\/*/)==null){
-      this.msg_mag="Seul les pdf sont suportées!!";
-      this.msg_vide_mag=false;
-      return;
-    }
-
-
-
-    if(e.target.files){
-      var reader= new FileReader();
-      reader.readAsDataURL(e.target.files[0]);
-      reader.onload=(event:any)=>{
-        this.msg_mag="";
-        this.msg_vide_mag=true;
-        this.file_mag=event.target.result;
-      }
-    }
-    // 
-    if(link != null){
-      this.apiServicem.downloadPdf(link).subscribe(response => {
-        console.log(response);
-        this.pdfFile = response;
-      });
-      // const magazine = this.magazines.find((s)=>{
-      //   return s.fichier === link;
-      // });
-      // if(magazine != null){
-      //   this.currentMag[0].nom = magazine.nom;
-      //   this.currentMag[0].fichier = magazine.fichier;
-      // }
-    }else{
-      this.page = 1;
-      // $('#dernier_mag').click(function(){
-      //   location.reload();
-      // })
-    }
-    
-  }
+  
 
   onAfterLoadCompleted(pdfData: any){
     this.allpage = pdfData.pagesCount;

@@ -2,6 +2,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminLoginService } from '../services/admin_login/admin-login.service';
 import { UserServiceService } from '../services/user_service/user-service.service';
@@ -24,7 +25,7 @@ export class AdminAuthentificationComponent implements OnInit {
   invalid:boolean;
   reponse:any;
 
-  constructor(public adminService:AdminLoginService,public dialog: MatDialog, private user_service:UserServiceService,private spinner : NgxSpinnerService) { }
+  constructor(public adminService:AdminLoginService,public dialog: MatDialog, private spinner : NgxSpinnerService,private router:Router) { }
 
   ngOnInit(): void {
     this.spinner.hide()
@@ -78,25 +79,31 @@ export class AdminAuthentificationComponent implements OnInit {
   // }
 
   onSubmit(form:NgForm){
+    this.spinner.show()
+    this.invalid=false
     this.user_name=form.value['user_name_admin'];
     this.password=form.value['password_admin'];
-    const admin=[
+    const admin=
       {
-        "user_name":this.user_name,
+        "email":this.user_name,
         "password":this.password
       }
       
-    ];
+    ;//{"email":this.mail,"password":this.password}
 
-    this.user_service.Login(admin).subscribe(res=>{
+    this.adminService.Login(admin).subscribe(res=>{
       this.reponse=res;
-      if(this.reponse.message=="valid"){
-        this.user_service.IsAdmin=true
-        const lecteur=this.reponse.data
-        localStorage.setItem("person", JSON.stringify(lecteur));
-        this.invalid=false;
+      if(this.reponse.message=="valid admin"){
+        //this.user_service.IsAdmin=true
+        const admin_re=this.reponse.data
+        //localStorage.setItem("admin", JSON.stringify(admin));
         this.spinner.hide()
+        console.log(admin_re)
+        this.adminService.admin=admin_re
+        this.adminService.isAuth=true;
+        this.router.navigate(['admin'])
       }else{
+        this.spinner.hide()
         this.invalid=true;
 
       }

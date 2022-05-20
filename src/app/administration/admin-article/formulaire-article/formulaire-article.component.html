@@ -44,7 +44,11 @@
 
             </div>
         </div>
+        <input type="text" name="credit_photo" placeholder="Crédit Photo" class="form-control my-2 p-3 text-light" ngModel style="justify-content: center; align-items: center; background-color: #131D28;"/>
+
         <textarea type="text" name="resume" placeholder="Un resumé de l'article..." class="form-control my-2 p-3 text-light" ngModel style="justify-content: center; align-items: center; background-color: #131D28;"></textarea>
+
+        <div *ngIf="article_exist"  class="my-1 mr-sm-2 text-danger" style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; ">Un article possède déja le meme titre!</div>
 
         <ckeditor [(ngModel)]="ckeditorContent" required name="contenu_article" #ckeditor style="background-color: #131D28;">
             <ckbutton [name]="'imageExplorer'" [command]="'openImageExplorer'" [icon]="'plugins/icons.png'" (click)="openImageExplorer($event)" [label]="'Open image explorer'" [toolbar]="'insert,1'">
