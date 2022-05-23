@@ -121,7 +121,21 @@
 
 <!-- Les articles de la page d'acceuil -->
 <div class="card-columns" style="padding-bottom: 10px;">
-    <div *ngFor="let blog of blogData ; let i=index" [routerLink]="['../detail-article',blog.id]">
+
+    <a class="card bg-dark text-white border-light d-none article_mini"  *ngFor="let blog of blogData ; let i=index" [routerLink]="['../detail-article',blog.id]" style="margin: 10px;">
+        <img [src]="blog.jetpack_featured_media_url" class="card-img" alt="...">
+        <h3><label class="rubrique" [ngStyle]="{'background-color':giveCouleur(articles[i].rubrique)}" style="text-transform: uppercase; color:white" id={{articles[i].rubrique}}>{{articles[i].rubrique}}</label></h3>
+        <div class="card-img-overlay">
+
+        </div>
+        <aside class="card-img-overlay">
+            <h5 class="card-title">{{ blog.title.rendered | slice:0:100}}...</h5>
+            <p class="card-text">{{ blog.date | date : 'longDate'}}</p>
+        </aside>
+    </a>
+
+
+    <div class="article_grand" *ngFor="let blog of blogData ; let i=index" [routerLink]="['../detail-article',blog.id]">
 
         <a class="card text-dark article_acceuil" style="margin-top: 25px;">
             <img src="{{ blog.jetpack_featured_media_url }}" height="200px" style="background-size: cover;" class="card-img-top" alt="photo_article">

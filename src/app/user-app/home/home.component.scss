@@ -142,13 +142,21 @@
     }
     .lesPlusLusDiv {
         background-color: white;
-        display: inline-block;
+        display: none;
         width: 97%;
         margin-left: 0%;
         vertical-align: top;
         border: 1px solid white;
         border-radius: 5px;
         margin-top: 15px;
+
+    }
+
+    .article_mini{
+        display: block;
+    }
+    .article_grand{
+        display: none;
     }
 }
 
