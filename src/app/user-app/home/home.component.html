@@ -122,7 +122,7 @@
 <!-- Les articles de la page d'acceuil -->
 <div class="card-columns" style="padding-bottom: 10px;">
 
-    <a class="card bg-dark text-white border-light d-none article_mini"  *ngFor="let blog of blogData ; let i=index" [routerLink]="['../detail-article',blog.id]" style="margin: 10px;">
+    <a class="card bg-dark text-white border-light  article_mini"  *ngFor="let blog of blogData ; let i=index" [routerLink]="['../detail-article',blog.id]" style="margin: 10px;">
         <img [src]="blog.jetpack_featured_media_url" class="card-img" alt="...">
         <h3><label class="rubrique" [ngStyle]="{'background-color':giveCouleur(articles[i].rubrique)}" style="text-transform: uppercase; color:white" id={{articles[i].rubrique}}>{{articles[i].rubrique}}</label></h3>
         <div class="card-img-overlay">

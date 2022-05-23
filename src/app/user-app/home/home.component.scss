@@ -123,6 +123,9 @@
     background-image: url("../../../assets/img/load.GIF");
     background-size: cover;
 }
+.article_mini{
+    display: none;
+}
 
 .card-img-top ::placeholder {
     background-image: url("../../../assets/img/load.GIF");
@@ -153,10 +156,25 @@
     }
 
     .article_mini{
-        display: block;
+        display: inline-flex;
+        flex-direction: row;
+        height: 200px;
+    }
+
+    .article_mini>img{
+        object-fit: cover;
     }
     .article_grand{
         display: none;
+    }
+    .rubrique[_ngcontent-cue-c139] {
+        top: 80%;
+        left: 15px;
+      
+    }
+
+    .card-img-overlay {
+        background: #3e3a354d;
     }
 }
 
