@@ -8,7 +8,7 @@
                 width="video.snippet.thumbnails.medium.width px" alt="logo_jstm" style="opacity: 0.5;"> -->
                 <img [src]="video.snippet.thumbnails.medium.url" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title" [innerHTML]="video.snippet.title"></h5>
+                  <h5 class="card-title" >{{ video.snippet.title | slice:0:60}}...</h5>
                   <!-- <p class="card-text">{{articles[i].description}}</p> -->
                 </div>
             </div>

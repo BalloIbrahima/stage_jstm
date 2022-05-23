@@ -43,11 +43,19 @@
     .share_div{
         position: initial;
     }
+    .img_article{
+        max-height: 500px;
+        object-fit: cover;
+    }
 
 }
 @media (max-width: 900px){
     .h2{
         font-size: 1rem;
+    }
+    .img_article{
+        max-height: 300px;
+        object-fit: cover;
     }
 }
 
