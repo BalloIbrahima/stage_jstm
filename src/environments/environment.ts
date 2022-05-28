@@ -7,7 +7,9 @@ export const environment = {
   // api:"http://192.168.43.8:8080"
   // api:"http://172.16.4.51:8080"
    // api:"http://172.16.1.16:8080"
-  api:"http://192.168.43.246:8080"
+  //api:"http://192.168.43.246:8080"
+  api:"https://jstm.cfapps.us10.hana.ondemand.com",
+
 
 
 };

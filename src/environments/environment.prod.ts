@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  api:"https://alif-backend-test.herokuapp.com",
+  api:"https://jstm.cfapps.us10.hana.ondemand.com",
 
 };

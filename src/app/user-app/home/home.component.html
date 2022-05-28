@@ -142,9 +142,13 @@
             <div class="card-body">
                 <h3><label class="rubrique" [ngStyle]="{'background-color':giveCouleur(articles[i].rubrique)}" style="text-transform: uppercase; color:white" id={{articles[i].rubrique}}>{{articles[i].rubrique}}</label></h3>
                 <mat-card-title>
-                    <p class="card-title">{{blog.title.rendered | slice:0:50 }}...</p>
+                    <p>
+                        <label class="card-title" [innerHTML]="blog.title.rendered | slice:0:50"></label><label>...</label>
+                    </p>
                 </mat-card-title>
-                <p [innerHTML]="blog.excerpt.rendered | slice:0:100 ">...</p>
+                <p>
+                    <label [innerHTML]="blog.excerpt.rendered | slice:0:100 "></label><label>...</label>
+                </p>
                 <p><small class="text-muted">{{ blog.date | date : 'longDate'}}</small></p>
             </div>
         </a>
