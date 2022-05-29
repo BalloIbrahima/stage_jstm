@@ -132,7 +132,9 @@
         </div>
         <aside class="card-img-overlay">
             <h3 class="card-title">
-	         <label>[innerHTML]="blog.title.rendered | slice:0:100"</label><label>...</label>
+	         <p>
+                      <label class="card-title" [innerHTML]="blog.title.rendered | slice:0:50"></label><label>...</label>
+                  </p>
             </h3>
             <p class="card-text">{{ blog.date | date : 'longDate'}}</p>
         </aside>
@@ -150,9 +152,8 @@
                         <label class="card-title" [innerHTML]="blog.title.rendered | slice:0:50"></label><label>...</label>
                     </p>
                 </mat-card-title>
-                <p>
-                    <label [innerHTML]="blog.excerpt.rendered | slice:0:100 "></label><label>...</label>
-                </p>
+                <p>{{blog.excerpt.rendered | slice:0:100}}...</p>
+                
                 <p><small class="text-muted">{{ blog.date | date : 'longDate'}}</small></p>
             </div>
         </a>
