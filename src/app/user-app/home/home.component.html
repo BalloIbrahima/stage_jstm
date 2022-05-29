@@ -108,8 +108,10 @@
 
                 </div>
                 <aside class="card-img-overlay">
-                    <h5 class="card-title">{{ blog.title.rendered | slice:0:100}}...
-                    
+                    <h5 class="card-title">
+                        <p>
+                           <label class="card-title" [innerHTML]="blog.title.rendered | slice:0:100"></label><label>...</label>
+                        </p>
                     </h5>
                     <p class="card-text">{{ blog.date | date : 'longDate'}}</p>
                 </aside>
@@ -132,9 +134,9 @@
         </div>
         <aside class="card-img-overlay">
             <h3 class="card-title">
-	         <p>
-                      <label class="card-title" [innerHTML]="blog.title.rendered | slice:0:50"></label><label>...</label>
-                  </p>
+	            <p>
+                    <label class="card-title" [innerHTML]="blog.title.rendered | slice:0:70"></label><label>...</label>
+                </p>
             </h3>
             <p class="card-text">{{ blog.date | date : 'longDate'}}</p>
         </aside>
@@ -152,7 +154,7 @@
                         <label class="card-title" [innerHTML]="blog.title.rendered | slice:0:50"></label><label>...</label>
                     </p>
                 </mat-card-title>
-                <p>{{blog.excerpt.rendered | slice:0:100}}...</p>
+                <label> {{ blog.excerpt.rendered | slice:0:100 }}...</label>
                 
                 <p><small class="text-muted">{{ blog.date | date : 'longDate'}}</small></p>
             </div>
