@@ -13,12 +13,12 @@ export class AdminHomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // if(!this.adminService.isAuth){
-    //   this.router.navigate(['jstm_admin'])
-    //   //relativeTo:this.active_route
-    //   console.log("execuerr")
+    if(!this.adminService.isAuth){
+      this.router.navigate(['j_s_t_m'])
+      //relativeTo:this.active_route
+      console.log("execuerr")
 
-    // }
+    }
   }
 
 }

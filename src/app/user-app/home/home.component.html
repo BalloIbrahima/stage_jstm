@@ -108,7 +108,9 @@
 
                 </div>
                 <aside class="card-img-overlay">
-                    <h5 class="card-title">{{ blog.title.rendered | slice:0:100}}...</h5>
+                    <h5 class="card-title">{{ blog.title.rendered | slice:0:100}}...
+                    
+                    </h5>
                     <p class="card-text">{{ blog.date | date : 'longDate'}}</p>
                 </aside>
             </a>
@@ -129,7 +131,9 @@
 
         </div>
         <aside class="card-img-overlay">
-            <h5 class="card-title">{{ blog.title.rendered | slice:0:100}}...</h5>
+            <h3 class="card-title">
+	         <label>[innerHTML]="blog.title.rendered | slice:0:100"</label><label>...</label>
+            </h3>
             <p class="card-text">{{ blog.date | date : 'longDate'}}</p>
         </aside>
     </a>
