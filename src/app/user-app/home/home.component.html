@@ -43,7 +43,7 @@
         </div>
       </div> -->
             <div class="carousel-item active">
-                <img src="{{Unes[2].img.src}}" class="d-block w-100" alt="...">
+                <img src="{{Unes[0].img.src}}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{Unes[0].img.title}}</h5>
 
@@ -154,7 +154,8 @@
                         <label class="card-title" [innerHTML]="blog.title.rendered | slice:0:50"></label><label>...</label>
                     </p>
                 </mat-card-title>
-                <label> {{ blog.excerpt.rendered | slice:0:100 }}...</label>
+                <label class="card-resume" innerHTML="{{blog.excerpt.rendered | slice:0:100}}..."></label>
+                <!-- <label> {{ blog.excerpt.rendered | slice:0:100 }}...</label> -->
                 
                 <p><small class="text-muted">{{ blog.date | date : 'longDate'}}</small></p>
             </div>

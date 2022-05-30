@@ -71,7 +71,6 @@ export class HomeComponent implements OnInit {
   blogData : any ;
   temp : any[] = [];
   Unes : any[] = [];
-  Unesss : any[] = [];
   base_path = `https://www.jstm.org/wp-json/wp/v2/posts?page=1&per_page=15`;
   nombres : number = 3;
   i : number;

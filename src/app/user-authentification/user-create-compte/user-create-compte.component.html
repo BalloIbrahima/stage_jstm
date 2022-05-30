@@ -22,7 +22,7 @@
                                 <!--affichage de la photo principal -->
                                 <div style="margin-left: 2%;">
                                     <div class="form-row d-center" *ngIf="!msg">
-                                        <img   class=" my-2  border profil_tof" src={{icone_user}} alt="Photo de profil" height="100" width="100px" ngModel required >
+                                        <img  name="photo_profil" class=" my-2  border profil_tof" src={{icone_user}} alt="Photo de profil" height="100" width="100px" ngModel  ngDefaultControl>
                                     </div>
                                     <div [innerHtml]='msg' class="form-row"  *ngIf="msg"  style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
                                         
@@ -98,7 +98,7 @@
                         <h2 class="my-2" style="color: white; margin: auto;">Photo de Profil</h2>
                     </div>
                     <div class="form-row d-center">
-                        <img   class=" my-2  border profil_tof" src={{icone_user}} alt="Photo de profil" height="150" width="150px" ngModel required >
+                        <img  name="photo_profil_mini" class=" my-2  border profil_tof" src={{icone_user}} alt="Photo de profil" height="150" width="150px" ngModel ngDefaultControl >
                     </div>
                     <div [innerHtml]='msg' class="form-row"  *ngIf="msg"  style="margin: auto; font-size: small; color:rgb(247, 0, 0);justify-content: center;align-items: center; "></div>
                     <div class="form-row">
